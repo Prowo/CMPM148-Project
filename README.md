@@ -1,2 +1,2 @@
 # CMPM148-Project
-An interactive name
+An interactive narrative game project for the UCSC Computational Media 148 Class - Summer 2022. 
