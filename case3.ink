@@ -770,17 +770,33 @@ No response.
     
 - "Please they forced me to do it... please I'll be safer here. Please just lock me up." He says between sobs. It's clear to you that he is very scared... of what you're still not sure.
 
-// not sure if we want it to be this obvious... 
+// not sure if we want it to be this obvious...
 "It's a group... a cult. They worship ◻◻◻’ ◻◻" He states. He looks more manic.
 <i>What did he just say?</i> It's as though your mind was protecting you from a sinister force.
 "What?? Who do they worship?" You ask in almost a whisper.
 "I can't say it again... they'll know."
 "And this... cult told you to kill Monica?" You ask inquisitively. Carl nods his head vigorously as confirmation.
 He starts to whisper again. You lean in order to hear him.
-"with her gone they'll control the whole city..." He says. A pit starts to form in your stomach as upon hearing this. You look at Carl, who's now repeatedly muttering something under his breathe. He's not all there anymore, but your gut tells you to believe him. Whoever these people are they have connections... and they did something to break this man.
+"with her gone they'll control the whole city..." He says. A pit starts to form in your stomach as upon hearing this. You look at Carl, who's now repeatedly muttering something under his breathe. He's not all there anymore... 
 
-I have to stop them.
-// -> "case 4/good ending
+// DO A DEDUCE HERE and look at all clues found so far... if enough clues are found then you believe him and go to the true ending of finding out Howard is in the cult.
+//<>, but your gut tells you to believe him. Whoever these people are they have connections... and they did something to break this man.
+// I have to stop them.
+// ->good ending
+// if there isn't time for that it's ok, its totally my fault for writing an awful case.
+
+// ELSE if DEDUCE isn't successful because you didn't find all the clues and information
+// then it goes to the don't believe and you get a not good ending since you think it's too outlandish
+// ->dont believe
+
+->DONE
+
+=== dont_believe ===
+// after DEDUCE
+<i>Carl is clearly sick and needs help. To fabricate such an organization...</i>
+With a heavy heart you exit the interrogation room, leaving your attacker behind.
+
+The case has been solved and you've brought some justice to Monica. You call it a day, heading home.
 ->DONE
 
 === bad_ending ===
