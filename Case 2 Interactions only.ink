@@ -38,26 +38,44 @@ LIST evidence_found = pills, cash, ID, business_card, tarot_card
         ->deparment_colleauge
     
     =department_coroner
-        *[Ask about body]
-         "Whats up Doc, did you find anything about the body."
-        
-         " Good news or bad news?"
+        *{location_description < 3 }[Ask about body]
+         With a charsimatic cheer, you say. "Whats up Doc, did you find anything about the body."
          
-            ** "Good news[."], you reply."
+         "Hey Tony," he bellows with his large gut. "How's my favorite friend doing."
+         
+         "I am doing alright Doc. Just that these cases lately have been pulling my ass lately."
+         
+         "Thats how the job is. At least I'm not pulling this person's ass for drugs. That drug ring last week was another level of drug smuggling. This poor lady, she was quite a looker if you ask me."
+         
+         "You and your wierd habit of rating the victims."
+         
+         "Hey, it gets boring here, if you cut up dead bodies as a living? Anyway come back to me later tonight. I will have a better analysis on our pretty little Sarah."
+        
+        ->department_coroner
+        *{location_description > 3 }[Ask about body]
+         With a charsimatic cheer, you say. "Whats up Doc, did you find anything about the body."
+        
+         "Good news or bad news?" He asked
+         
+            **"Good news."
                 ->department_coroner
             
-            Doc: " I did find something about the body, that may help with the case. The body had no signs of assault, but I did find traces of drugs in her system. Some kind of sedation. Bad news, she must of been drugged since her dissapearance.
-            
+             "I did find something about the body, that may help with the case. The body had no signs of assault, but I did find traces of drugs in her system.
+             
+             "Whats the bad news?"
+             
+             "Ohh," they mumble under their breath. "I would of said the same thing regardless. I thought it will help lighten the mood."
+             
             ** [Bad news] 
-                " Bad news is I don't cause of death was suicide. Good new is I found some traces of drugs in her system. I won't know the type til tonight.
+                " Bad news is I got more work to do. Good new is I found some traces of drugs in her system. I won't know till tomorrow.
                 -> department_coroner
                 
-        *[Ask about the pills]
+        *{evidence_found ? pills} [Ask about the pills]
             "The pills are an antidepressant. Its a generic treatment for symptoms of depression. Its a relativly safe drug that wouldn't lead to a suicidal tendecies," they said.
             -> department_coroner
             
         *[Ask about the pills being found in the body]
-             "After running additionals test, I can confrim that no antidepressants were found in her system. The drug test show positive for sedatives.
+             "After looking at test results, I can confirm the pills don't match with what was in the body."
                 -> department_coroner
     
     =deparment_colleauge
@@ -370,7 +388,7 @@ There's only a purse, with a few items. You found a bottle of pills, wallet, and
         {The wallet is leather and of high quality. You find some cash, a single credit card, her ID, a business card, and  a large card. | You set the item aside }
 
         * * *[Inspect cash]
-            There's a few thouadan dollars in here. Why was she carry so much cash for?
+            There's a few thousand dollars in here. Why was she carry so much cash for?
             ~evidence_found += cash
             ->wallet
             
