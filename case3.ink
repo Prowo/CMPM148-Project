@@ -1,5 +1,5 @@
 // only "global" variables I use
-VAR relationship = 20
+VAR relationship = 30
 VAR suspicion = 0    // possible variable idk
 
 // local variables to this case
@@ -10,6 +10,8 @@ VAR loneSurvivor = false
 VAR truthlieshow = 0
 VAR broughtHoward = false
 VAR giveSafe = false
+VAR callHoward = false
+VAR kniferelictarot = 0
 
 // two endings, one good the other bad
 // good ending: you don't invite Howard to investigate with you, you find the safe,
@@ -311,7 +313,7 @@ Your hand instinctively tightens into a fist from anger. <i> Why her of all peop
         
             You try to hide your skepticism.
         
-            "Thanks for the clarification Johhny," is all you say in response. 
+            "Thanks for the clarification Johnny," is all you say in response. 
             
             //They can't even bother to get their story straight... // add points to suspicion or something???
             <i>What a big miscommunication...</i>
@@ -393,7 +395,7 @@ Immediately you turn to the source of the scream. Two police officers are holdin
   ~ truthlieshow = 2
     “She’s safe. The paramedics took her to the hospital. You can check on her later, but can you tell me who you are?” 
     //Her eyes brighten a bit and I feel my self conscious nagging me, but I have to get to the bottom of this. 
-    “Oh thank god! My name is Sarah. I’ve been friends with Monica since we were little kids. We basically grew up together… Thank you for telling me the truth. Nobody would speak to me.”
+    “Oh thank god! My name is Sasha. I’ve been friends with Monica since we were little kids. We basically grew up together… Thank you for telling me the truth. Nobody would speak to me.”
     You're hit with remorse. After this she will go to the hospital and ask for her friend that isn't there. You lied to her for my own convenience. <i>What's done is done.</i>
     //I want to walk away from her and never see her again. But this is a choice I'll have to live with. 
 
@@ -448,13 +450,13 @@ You jot down your final notes as quickly as you can. You weren't expecting to le
 
 {
     - truthlieshow == 2:
-        "Thank you Sarah. You've been a big help."
+        "Thank you Sasha. You've been a big help."
         "No problem, detective! Now I've gotta go and see Monica."
         You walk away and all you can think of is <i>I'm sorry.</i>
     - else:
         "Thank you..." You pause after realzing you haven't learned her name.
-        "Sarah, I'm Sarah."
-        "Thank you Sarah. You've been a big help... I promise I'll get to the bottom of this."
+        "Sasha, I'm Sasha."
+        "Thank you Sasha. You've been a big help... I promise I'll get to the bottom of this."
         She nods dejectedly. With one final look at her, you walk off.
 }
 // clue
@@ -499,6 +501,7 @@ You couldn’t get much sleep after coming home. The events from last night stil
 
   * [Go solo]
     ~ broughtHoward = false
+    ~ relationship -= 10
     He's been acting strangle lately. You'll get more done if you just go yourself. You quickly come up with a lie.
     "You were right last night… I was just trying to find what I wanted to see. I’m leaving the case alone.” You say dejectedly.
     ... 
@@ -734,10 +737,10 @@ You go back home as quickly as you can. The contents of the safe is the only thi
 
 You place everything back into the safe and head back to the station.
 
-*[Interrogate Carl]->good_ending
+*[Interrogate Carl]->possible_to_go_to_good_ending
 ->DONE
 
-=== good_ending ===
+=== possible_to_go_to_good_ending ===
 Carl sits in the interrogation room. The chief kept his end of the bargain. <i>Now to keep mine.</i>
 
 You sit across from him and place the safe onto the metal table. His eyes are instantly drawn to it.
@@ -779,6 +782,9 @@ No response.
 He starts to whisper again. You lean in order to hear him.
 "with her gone they'll control the whole city..." He says. A pit starts to form in your stomach as upon hearing this. You look at Carl, who's now repeatedly muttering something under his breathe. He's not all there anymore... 
 
+REMEMBER TO DELETE THIS-----------------
+->begining_of_good_ending
+
 // DO A DEDUCE HERE and look at all clues found so far... if enough clues are found then you believe him and go to the true ending of finding out Howard is in the cult.
 //<>, but your gut tells you to believe him. Whoever these people are they have connections... and they did something to break this man.
 // I have to stop them.
@@ -793,10 +799,13 @@ He starts to whisper again. You lean in order to hear him.
 
 === dont_believe ===
 // after DEDUCE
+// this is a bad ending
 <i>Carl is clearly sick and needs help. To fabricate such an organization...</i>
 With a heavy heart you exit the interrogation room, leaving your attacker behind.
 
-The case has been solved and you've brought some justice to Monica. You call it a day, heading home.
+The case has been solved and you've brought some justice to Monica. You call it a day, heading home with one thought on your mind.
+
+<i>I’m not sure if anything I’ll do will ever change Dunwitch. No matter how many cases I solve it’s not enough...</i>
 ->DONE
 
 === bad_ending ===
@@ -814,4 +823,440 @@ While some part of you is happy that the case has been solved, a creeping though
 <i>I’m not sure if anything I’ll do will ever change Dunwitch. No matter how many cases I solve it’s not enough...</i>
 
 ->DONE
+
+=== begining_of_good_ending ===
+<> but your gut tells you to believe him. 
+<i>Whoever these people are they have connections... and they did something to break this man. I have to stop them.</i>
+
+"Can you tell me more Carl?" You ask, but it appears to not have reached him. He's seemingly in his own world now.
+
+With a sigh you leave the interrogation room, grabbing the safe and it's contents. There's nothing more you can get out of him.
+
+<i>Where do I start to catch a fucking cult?!</i> Reluctantly you pull out your phone and call Howard.
+
+It rings several times but straight to voice mail...
+
+As you walk back to your desk Janet, the secretary, calls out to you.
+
+"Tony have you heard from Howard?" She asks with sincerity in her voice.
+"No I haven't... why?"
+"Well he was supposed to come in today but he hasn't. I called him but he didn't pick up. I'm worried about him, this isn't like him..." She trails off.
+
+You can't help but laugh a little. Janet's always had a bit of a crush on Howard. <i>If only he knew... but she's right. This isn't like him, he would have told me.</i>
+
+*[Find Howard]
+    "I'll go find him Janet, don't worry about it." You reply.
+    You've already made your way to the exit before she's had a chance to respond.
+    
+    In your haste to leave you realize you still have the safe in hand. You toss it in the backseat of your car, leaving your future self to deal with it later.
+    
+- <i>Where could he be?<i>
+
+*[Bar]
+    It's early in the day but a thought pops into your head.
+    
+    <i>Maybe he's at the bar??? It doesn't hurt to check I guess...</i>
+    The place you and Howard would always go to after long and tedious cases.
+    
+    ** [...]
+        You enter the bar. Unsurprisingly it's practically empty. Just a few sad souls drinking their problems away.
+        
+        You walk up to the bartender, Vince, a long time friend.
+        
+        "TONY! What are you doin' here so early? Trouble in paradise?" He says mockingly.
+        "Shut up Vince. I don't know where Howard is. I thought he'd maybe be here."
+        "Sorry but he hasn't shown his face here."
+        "Thanks Vince. I'll see ya later."
+        "Hold on a sec Tony... here a shot for the road. Its on the house!" Vince places a shot in front of you.
+            ***[Accept]
+                <i>What the heck, why not?!</i>
+                You take a swig of the amber colored liquid. It tastes awful but you let out no grimace of disgust. Having long ago adjusted to it.
+                "Thanks again Vince."
+                You exit the bar.
+                <i>Where are you Howard?<i>
+                You drive to Howard's place.
+                ->howards_house
+            ***[Reject]
+                "Thanks Vince but I can't. I'm on the clock ya'know!"
+                "You're no fun!" Vince scoffs as he takes the shot himself.
+                You exit the bar.
+                <i>Where are you Howard?<i>
+                You drive to Howard's place.
+                ->howards_house
+*[Home]
+    <i>He's probably at home. I should check on him...</i>
+    
+    You drive to Howard's place. Even though you've been there countless times before you're a bit nervous. Your clammy hands grip the steering wheel a bit tighter.
+    ->howards_house
+
+->DONE
+
+=== howards_house ===
+*[Knock]
+    You knock loudly on the door.
+    "HOWARD! You there? It's me Tony!" You exclaim.
+    
+- No response.
+
+<i>Dammit!</i>
+
+You pace back and forth on his porch. Thinking of what you should do next.
+
+*[Enter Howard's house]->inside_howards_house
+*[Call Howard]
+    ~ callHoward = true
+    You pull out your phone and call Howard again. 
+    He doesn't pick you up but...
+    You can hear ringing coming from inside.
+    ->inside_howards_house
+
+*[Leave it alone]
+    You can't come up with anything else to do. No other clues point to where he could be.
+    All you can do is hope he's alright...
+    You drive back to the station when you recieve a text.
+    "Sorry Tony. I'll be back tomorrow. Promise. Tell Janet not to worry ;)"
+    You feel comforted by the fact he's ok.
+    **[...]
+        The case from the past several days linger in your mind.
+        
+        One thought speaking louder than the rest. 
+        
+        <i>I’m not sure if anything I’ll do will ever change Dunwitch. No matter how many cases I solve it’s seemingly not enough...</i>
+        You push this thought aside. You're ready for the next case, whatever it may be. Protecting Dunwitch is your top priority.
+        Little do you know the danger that awaits, the danger you could have stopped.
+    
+->DONE
+
+=== inside_howards_house ===
+You know where Howard keeps his spare key. Under the doormat.
+You've told him countless times to move it somewhere else. It's a major hazard! But with key in hand, your grateful he hasn't taken your advice just yet.
+
+*[Enter]
+    It looks like nobody's home.
+{
+    - callHoward == true:
+        You find Howard's phone on the coffee table. He has several missed calls.
+        <i>Why'd he leave his phone here?</i>
+}
+
+- You look around. Many wouldn't guess it but Howard's very tidy. Today is no exception. Everything looks like it's placed with purpose and precision.
+
+*[Howard's Room]
+    You enter Howard's room. 
+    "Howard, you there?"
+    
+- Nothing. Completely empty.
+
+While you really shouldn't you can't help but take a look around.
+
+// find ritual knife
+*[Closet]
+    ~ kniferelictarot = 1 // 1 == knife
+    You open his closet. It's full of dress shirts and blazers.
+    <i> God what am I doing?</i> You say to yourself as guilt begins to bubble inside you.
+    You begin to close the closet when you catch a glimpse of a box.
+    **[Box]
+        It's made of walnut. The wooden grooves are almost hypnotizing, but what really caught your attention were...
+            ***[Carvings]
+                There are several intricate symbols carved onto the box. You open it...
+                    ****[Open]
+                        Inside, the box is lined with a velvet like material. A knife with strange carvings...
+                        You drop the wooden box in shock. It's the exact same knife that killed Francis Thurston. <i>Why the fuck does Howard have this? Is it a replica???</i>
+// find image of relic
+*[Nighstand]
+    ~ kniferelictarot = 2 // 2 == relic picture
+    Beside his neatly made bed is a nightstand. A framed picture of the two of you in your early days sits on top.
+        **[Open nightstand drawer]
+            Curiousity gets the better of you as you open the drawer. A lone journal is all that's in there.
+                ***[Journal]
+                    It's a leather bound journal. It seems heavily used.
+                    You try to not to thoroughly read its contents. 
+                    As you quickly flip through it a photo stops you in your tracks.
+                    ****[Photo]
+                        It's... the relic. Just looking at it you begin to feel the fear that previously gripped you.
+// find tarot card
+*[Bookshelf]
+    ~ kniferelictarot = 3 // 3 == tarot card: Wheel of Fortune
+    You didn't realize how big of a reader Howard is. A grand bookshelf stands tall in his room. It's filled with them. 
+    <i>When does he have the time to read them?<i>
+    You quickly scan them. He has lots of the classics like <i> The Odyssey</i>, <i>Frankenstien</i>, and those are the only ones you recognize. <i>Maybe I should get into reading...</i>
+    // One thing you notice is there are several
+    Certain words catch your eye: deception, conjuring, symbolism, magic, phantasms...
+        **[Book]
+            <i>I guess Howard is interested in some weird stuff.</i>
+            You pick one out randomly.
+            It's old, weatherd and smells of mildew.
+            You fip through the pages slowly, the old pages crinkling loudly in protest.
+            Symbols and charts cover the pages along with annotations from Howard or God knows whoelse.
+            ***[Annotations]
+                Much of the book doesn't make sense to you but you stop reading at a page where the annotations become seemingly more chaotic. 
+                Circled heavily is the... Wheel of Fortune.
+                Immediately you remember the tarot card you found while investigating Sarah Rasha's death. There are "words" written in symbols but you can't interpret them.
+    
+
+- The sound of footsteps grabs your attention.
+
+You look to see Howard. You notice his disheveled appearance and that his shirt is covered in blood.
+
+"Tony, what the fuck are you doing in my house?"
+
+*[Tell Truth]
+    "I was worred about you, you didn't show up for work? Is that your blood? Are you ok?!" You say.
+    "Get out Tony." Howard says calmly.
+*[Deflect]
+    "Why are you covered in blood?!" You yell back.
+    "Just get out Tony." Howard says.
+*["Are you ok?"]
+    "Jesus Christ Howard! ARE YOU OK? You're bleeding!" You say with exasperation.
+    "It's not mine." Howard says calmly.
+    A chill runs down your spine.
+    
+- "I can't go Howard."
+"Why not?" Is all Howard says in response.
+
+{
+    - kniferelictarot == 1:
+        "Because I found it... I found the exact same knife from Thurston case. Howard please just tell me why you have it? Is it a replica?" You say pleadingly.
+    - kniferelictarot == 2:
+        "Why do you have a picture of... <i>it</i>? Of the figure or relic or whatever the hell you want to call it?" You say. You struggle mentioning the relic as it fills you with unease.
+    - kniferelictarot == 3:
+        "... I- I read some of your books here. You really like the occult huh?" You clear your throat before continuing. "Why was the Wheel of Fortune circled? I remember it from the Rasha case..."
+}
+
+"Don't tell me Howard, don't tell me you're a part of this... this <i>cult</i> that Carl was talking about!!" You struggle to get the words out.
+
+{
+    - kniferelictarot == 2:
+        "Wait, how do you know about the relic Tony? DID CARL HAVE IT?" He yells.
+        You flinch at his response. It only confirms the worse.
+        Howard composes himself before he continues.
+        "Tony.. do you have it? Do you have the relic? Please just give it to me."
+    - else:
+        "Then you should just leave Tony... and pretend this never happened."
+        You flinch at his response. It only confirms the worse.
+}
+
+*[<i>WHY?</i>]
+    "WHY ARE YOU A PART OF THIS MESS HOWARD?!" You yell at Howard.
+    
+- So many emotions swirl through your head. Anger, betrayal, sadness, curiousity...
+
+<i>No wonder he's been acting so strange, so dismissive</i>
+
+This thought only makes you angrier.
+
+<i> Wait... </i>
+
+"The Rasha and Thurston case... that was you?" You ask praying he wil say no.
+
+"Well I didn't do it myself but yes. A 'cult' needs funding too!" Howard says with a sigh.
+
+"And... and Monica. Did you know they were going to kill her?" You say in almost a whisper.
+
+"Did I know?! Hell, I was the one who told them to do it! Frank is apart of this too ya'know. We're trying to expand our organization to new heights!" Howard says nonchalantly.
+
+{
+    // evil Howard
+    // can only kill or "catch" howard
+    - relationship < 20:
+        Abruptly Howard starts laughing. This catches you by surprise even though it shouldn't.
+        "What's so funny?" You ask.
+        Wiping the tears in his eyes Howard responds.
+        "Haven't you ever thought about it Tony? C'mon you hadddd to have thought about it at leastttt once."
+        "What are you talking about?"
+        Howards expression changes to one of annoyance.
+        "Don't act coy with me! KILLING! After all of this time on the force... seeing so much violence hasn't it broken you too?" He says.
+        Before you can think of a response he continues.
+        "Everyday theres a new <i>case</i>. Everyday somebody does something horrible. I'm tired of it Tony. Everything just needs to restart."
+        *[Restart]
+            "What do you mean... restart?"
+            ->confront_howard
+    // right intentions wrong execution Howard
+    // can catch Howard
+    - else:
+        Howard begins to speak again.
+        "Aren't you tire of this job?? Seeing so much violence and crime everysingle day? It doesn't look like its going to end anytime soon..."
+        You don't know what to say in response. Howard just continues.
+        "No matter HOW MUCH we work its never enough Tony. We can't catch all the bad guys." Howard says with sadness.
+        "I know that Howard. I KNOW THAT. But we can't just give up!"
+        "I'm not giving up, Tony. This is why I'm doing all of this. Things can finally change now!! Yes, we <i>did</i> have to make some sacrifices but its for the greater good."
+            *[<i> You're delusional...</i>]
+                "Cut the utilitarian crap. You're delusional Howard... how is killing people going to solve things?!" You say.
+                ->spare_howard
+            *[<i>This isn't the way...</i>]
+                "Howard... this isn't the way to solve things! You know that..." You say.
+                ->spare_howard
+
+}
+
+->DONE
+
+=== spare_howard ===
+You've known the man in front of you for years.
+
+<i>Howard please let me help you.</i>
+
+"Howard it's not too late."
+
+*[Convince Howard]
+    "Sometimes I hate this job too sometimes."
+        **"We've seen people do heinous things."
+            ***"Trust me Howard, sometimes I feel completely hopeless sometimes."
+                ****[You're not alone]
+                    "You're not alone Howard. Remember, we're partners! You can talk to me. We can get through this!"
+                    You find yourself holding your breath after your statement. Hoping that Howard will see your sincerity.
+                    ->bestest_ending
+                ****[It's just part of the job]
+                    "It's just part of the job Howard. You can't let it blind you to good and evil."
+                    Howard just lets out a sigh in response.
+                    ->good_arrest_howard
+        **"More and more crime happens and it's like[...]
+            <> it will never stop, but..."
+            ***[We're in this together]
+                "Howard... we're in this together. Remember our first case together. I knew we'd be friends. Don't you trust me?"
+                You find yourself holding your breath after your statement. Hoping that Howard will snap out of it.
+                ->bestest_ending
+            ***[We're only human.]
+                "We're only human. We signed up for this job knowing we can't stop all crime."
+                "Tony..." Howard says with a sigh.
+                ->good_arrest_howard
+*[Arrest Howard]
+    ->good_arrest_howard
+->DONE
+
+=== bestest_ending ===
+Suddenly a knife clatters to the floor. You look in shock as Howard has seemingly let go of his hidden weapon. You look back up at Howard and he's...
+
+He's crying.
+You smile. You have your partner back.
+
+*[Station]
+    You bring in Howard. Everybody looking at you in shock. It looks like Janet is about to faint.
+
+Howard tells you everything. There are several times during the "interrogation" you almost spit your coffee out. The relic was indeed <i>demonic</i> of somesort which is why it struck so much fear in you. Had the cult been successful Dunwitch would be...
+<i>God I don't even want to thnk about it.</i>
+For now your focus is eradicating the cult.
+
+You let out a sigh of relief. Although you're a bit sad that you'll have to do all of this alone. While Howard did cooperate, he too must face justice. Both of you have accepted this fact.
+
+By the time he's out of prison. The cult will all be a distant memory.
+
+You head back home after a long day.
+Tomorrow you're back to work, a lot has to be done before Howard's back.
+->DONE
+
+=== good_arrest_howard ===
+"I don't want to kill you Tony."
+"I don't want you to kill me either!"
+
+You both laugh a bit and it hits you how bizarre this situation is.
+
+Suddenly a knife clatters to the floor. You look in shock as Howard has seemingly let go of his hidden weapon. He raises his arms together, signalling you to handcuff him.
+
+"I admit defeat, but you won't get anything out of me."
+
+You handcuff your partner. <i>Can I even call him that anymore?</i>
+
+*[Station]
+
+- You bring in Howard. Everybody looking at you in shock. Howard sticks to his word. He only admits to murder. The blood on his shirt was the only evidence of this crime.
+
+He makes no comments on the cult or organization or whatever you want to call it.
+
+You know by now that many more people are a part of this. Pretending to be everyday citizens, officers, lawyers...
+
+But you make a promise to yourself that you'll uncover the truth.
+
+One day Howard will talk, after all he's your partner.
+->DONE
+
+=== confront_howard ===
+"We have to start from scratch Tony. ◻◻◻’ ◻◻ will change everything!" Howard says, he's calm once again.
+
+<i>It's just like that time with Carl. I don't understand what he just said...</i>
+
+"Who will change everything?" You ask with some hesitancy.
+Howard just lets out a chuckle.
+
+You just realize that throughout this conversation Howard's been slowly making his way towards you. He's an arms length away from you now.
+
+"Who's blood is that on your shirt?" You say as you point at Howard.
+He looks down at it.
+"Oh, just a little lamb. A sacrifice to-" He says with a smile.
+"ENOUGH HOWARD! Please just come with me and I can get you help." You say. You extend your hand out to him as a gesture of kindness.
+
+In reponse Howard brandishes a knife he's had on him this whole time.
+
+*[Kill Howard]
+    Your feel your heart break a bit.
+    <i>He's too far gone.</i>
+    You instinctively reach for your gun and pull the trigger.
+    **[BANG]
+        Howard falls to the floor. Blood begins to pool around him.
+        You also fall to the floor and begin to sob.
+        ->aftermath
+*[Arrest Howard]->arrest_howard
+   
+->DONE
+
+=== arrest_howard ===
+ Howard lunges towards you with the knife.
+    You, mostly, dodge it as he scratches the side of your arm.
+    **[Punch]
+        You throw a punch at him, but he blocks it and lands one of his own. You quickly stumble back to avoid another slash.
+    **[Kick]
+        You decide to switch things up a bit and attempt to kick Howard. You land a hit but it's not as effective as you thought it would be. You jump back to avoid another slash.
+    **[Grab Knife]
+        Howard holds the knife with his right hand. As he attempts another slash you grab hold of his hand. Trying to pry the knife from him is unsuccessful as he leaves a gash on your hand.
+- In a last ditch effort you tackle Howard. You feel a sharp pain in your shoulder as the knife plunges into you. You manage to subdue Howard but the pain in your shoulder is severe. 
+"You're under arre-"
+"Cut the crap Tony!" Howard yells, cutting you off.
+You pause and in that moment Howard notices.
+With one swift motion, as if he's practiced this hundreds of times, Howard bucks you off and he reaches for your-
+
+*"HOWARD!"
+    He wrests your gun from your body and...
+    **[BANG]
+        You instinctively close your eyes but after several moments you realize that you're alive.
+        You open your eyes to see Howard's lifeless body. He shot himeself...
+        <i>Why didn't he shoot me?</i>
+        You back away from Howard and begin to sob.
+->aftermath
+
+=== aftermath ===
+After some time you compose yourself and call the only person you trust.
+
+*[Police Chief]
+
+You explain the whole mess to him in between sobs. Some small sliver of you hopes he doesn't believe you so that you'll go to jail. Unfortunately for you, he believes you.
+
+The chief soon arrrives along with several squadrons of police.
+"Go home son. We can take care of this." The chief says, hoping to offer some comfort. But you refuse. 
+They tear the house apart and find several things suggesting an <i>organization</i>. Though nothing to locate where this group is or who is a part of it. Howard made if painfully clear that many, many people are not who they seem to be.
+
+You finally go home.
+
+Tomorrow you're back to work.
+->DONE
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
