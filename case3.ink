@@ -782,7 +782,7 @@ No response.
 He starts to whisper again. You lean in order to hear him.
 "with her gone they'll control the whole city..." He says. A pit starts to form in your stomach as upon hearing this. You look at Carl, who's now repeatedly muttering something under his breathe. He's not all there anymore... 
 
-REMEMBER TO DELETE THIS-----------------
+REMEMBER TO DELETE THIS PLACEHOLDERRRRRRRRRRRRRR TO TEST ENDINGS-----------------
 ->begining_of_good_ending
 
 // DO A DEDUCE HERE and look at all clues found so far... if enough clues are found then you believe him and go to the true ending of finding out Howard is in the cult.
