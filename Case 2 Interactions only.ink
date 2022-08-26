@@ -4,7 +4,7 @@ LIST locationsVisited = home, bankvisit, jobvisit, ftvisit
 LIST fortune_teller_state = decline, wary
 LIST evidence_found = pills, cash, ID, business_card, tarot_card
 LIST clues_found = cash_clue, pills_clue, card_clue, job_clue, coroner_clue, ft_clue
-// LIST evidence_state
+// LIST case_state
 
 
 === location_description
@@ -36,7 +36,7 @@ LIST clues_found = cash_clue, pills_clue, card_clue, job_clue, coroner_clue, ft_
         ->department_coroner
     
     *[Talk to colleauge]
-        ->deparment_colleauge
+        ->department_colleauge
         
     *[Write Report]
       The day is getting late as you settle down into your desk. 
@@ -100,23 +100,34 @@ LIST clues_found = cash_clue, pills_clue, card_clue, job_clue, coroner_clue, ft_
         +[Leave coroner's office]
             ->department
             
-    =deparment_colleauge
+    =department_colleauge
     
         "Hey how's it going? Any luck on the case," he chuckles.
     
        * [Tell him about your findings]
        //{check flags} 
             " I have found that she has been withdrawing a large amount of cash. Something must of have happened recently since her job secretary descirbed her as "on edge."  I found out that she might of possible been part of a cult as the last eye witness was a fortune teller. She must have been searching for something."
-            -> deparment_colleauge
+            -> department_colleauge
             
-       * "No luck[."]"Most trails lead to a deadend. Have you finding anything on your end?"
+       * "No luck.["]"Most trails lead to a deadend. Have you finding anything on your end?"
              
             " I tried contacting distant family member to ask about any information.  They said they have no contact from her in years. I tried checking local records to see if she there was any paper trail. No luck on my end either."
-            -> deparment_colleauge
+            -> department_colleauge
             
-        *What about you?["] Did you find anything on your end?"
+        *"How are you?[,"] you ask in a tired manner.
+        
+            "Same old same. Just trying to solve this endless cases. Doesn't this job get old too quick. No one wants to be detectives in this day and age. You are better off living your life than dealing with the deaths and killings of society. What do you think, Tony?"
             
-
+            **[Console]
+            "That's why we are the best at what we do. Whether that be because of the shit we've seen or had little no one cares for justice. We both are trying to make the world a better place. One fucking case at a time. I feel the same thing everyday, Howard. Yet, as long as I can make my wife and kids from leaving a crime-induced world, I'll be happy."
+            ->department_colleauge
+        
+            **[Argue]
+                "Come on, Howard. We both been in the biz for 10 years. Never had I once thought about quitting this gruesome job. We are doing god's work punishing these criminals and putting them in their place. As long as I live justice will never get old. This job is my dogma.
+            -> department_colleauge
+        *[Leave]
+        ->department
+        
 === case2_deduce
     +[No idea] I did not found much about our victim Sarah. This case will be rule as a suicide if I don't have any clues to present.
     ->suicide_loop
@@ -152,7 +163,7 @@ LIST clues_found = cash_clue, pills_clue, card_clue, job_clue, coroner_clue, ft_
         ++{ clues_found ? (coroner_clue, cash_clue, job_clue)}[Motive]
         From all the clues I found, I suspect this case is a murder.  The victim must of have gotten involved into the something terriblet. Once they have gotten their funds, they decided to silence their witnesses. But why did they leave a tarot card as a clue? Did the killer have an M.O. ? They did leave pills to mislead me into a suicide case. This killer must be very methodical. 
         
-            +++ { clues_found ? ft_clue}[Cult?]
+            +++ { clues_found ? card_clue or clues_found ? ft_clue}[Cult?]
         
         -> murder_loop
     
@@ -216,7 +227,8 @@ You walk into a daintly picturesque shop. The shop gives you goosebumps as there
      - fortune_teller_state ? decline:
         <>  "I am not interested in talking someone who does not know sincerity. I have seen her, but that is all. You reap what you sow. For my blessings do not solve stupidity."
     - else:
-        <> yo
+        <> "Yes, I have seen her. She was quite a peculiar one. She seemed very interested into the occult. She keeped pestering me about tarot meanings and ask if new any groups she could join. She visited a couple times a month ago and all of sudden she stop coming. I fear that something has happened for the worst."
+        ~ clues_found +=  ft_clue
         ~ fortune_teller_state += wary
     }
     ->fortune_teller_body
@@ -263,7 +275,7 @@ You walk into a daintly picturesque shop. The shop gives you goosebumps as there
            ->fortune_teller_body
            
 ===ft_reading
-  ~clues_found += ft_clue
+  ~clues_found += card_clue
     "I will do a three card reading. One for the past, the present, and the future. Tell me if you suspect something that relate, I will read your destiny to offer a final card of guidance," she said.
 
     She mixes the cards up as she sings a chant for guidance and safety. She cuts the deck into three parts and puts a card from each pile on to the table and then she closes her eyes as spread the remaining card and prays for the world to judge our fate. She hovers over a card and sets it aside.
