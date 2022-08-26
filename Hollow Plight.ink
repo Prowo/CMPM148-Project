@@ -123,7 +123,7 @@ Howard, attempting to justify calling you out, explained that "since it’s a mu
 	*(street)[The street]
 		Glancing around the street you see at both ends an officer keeping out any potential passersby. Not that they really need to worry, as things are dead quiet right now. This street winds its way, eventually, through most districts of the city. Yet it tends to serve as a detour route, as there’s almost always a more direct route to wherever you need to go. As such, businesses here tend to attract a small strange mix of clients, where you’ll find a judge in line with a dock worker or a cop a table over from an accountant. 
 		**[Check your watch]
-            It's 5:41, you booked it, albeit begrudgingly, right when you got the call 30 minutes ago. It’s a bit unsettling, you know just how sleepy this city can be but you would have thought there would be some activity by now. But aside from fellow officers, not a creature is in sight. 
+            It's 5 : 41, you booked it, albeit begrudgingly, right when you got the call 30 minutes ago. It’s a bit unsettling, you know just how sleepy this city can be but you would have thought there would be some activity by now. But aside from fellow officers, not a creature is in sight. 
             +++[Back]->investigateScene
 +[Sip your coffee]
 	Damn it’s {cold |really cold|empty... You notice Howard chuckle as he sees you groan at your empty mug {~relationship+=10}|still empty}.
@@ -430,6 +430,7 @@ Pulling it out, you realize it is a tarot card, The Fool{C1_evidence ? tarotDeck
     ~C1_evidence += cult_knife
     ~cult_clues += knife
     ->inv2
+-That seems to be it, time to head on out.
 ->chooseLoc
 
 ===Office2
