@@ -33,19 +33,20 @@ VAR kniferelictarot = 0
 //Start_Screen
 ===start_screen
 
-<h1> Hollow Plight <h1>
-<h2> Case 1 begins <h2>
-    +[START]
+<center><h1> Hollow Plight <h1>
+    *[START]
+-<center><h2> Case 1 <h2>
+    +[Begin]
     
-->crime_scene
+->crime_scene1
 
 //Case 1 to 2 Transition        
 ===case1_close
 
-<h2> Case 1: Fool in yellow Ends <h2>
+<center><h2> Case 1: Fool in Yellow Ends <h2>
     +[Continue]
     
-<h2> Case 2: Begins <h2>
+<center><h2> Case 2: Begins <h2>
     ->scene1
     ->DONE
  
@@ -224,10 +225,10 @@ VAR kniferelictarot = 0
 //Case 2 to 3 Transition        
 ===case2_close
 
-<h2> Case 2: Facade Ends <h2>
+<center><h2> Case 2: Facade Ends <h2>
     +[Continue]
     
-<h2> Case 3 Begins <h2>
+<center><h2> Case 3 Begins <h2>
     ->dream_sequence
     ->DONE
  
@@ -1365,13 +1366,13 @@ He starts to whisper again. You lean in order to hear him.
 "with her gone they'll control the whole city..." He says. A pit starts to form in your stomach as upon hearing this. You look at Carl, who's now repeatedly muttering something under his breathe. He's not all there anymore... 
 ->case3_close
 
-//Case 3 to Ending      
+//Case 3 to Ending Transition
 ===case3_close
 
-<h2> Case 3: From the Ashes ends <h2>
+<center><h2> Case 3: From the Ashes Ends <h2>
     +[Continue]
     
-<h2> Ending Begins <h2>
+<center><h2> Ending Begins <h2>
     ->dream_sequence
     ->DONE
  
