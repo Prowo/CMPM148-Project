@@ -1,4 +1,4 @@
--> scene1
+->start_screen
 
 //global variables
 LIST ending = good
@@ -30,15 +30,22 @@ VAR kniferelictarot = 0
 === function has (x,y)
     ~ return x ? y
 
+//Start_Screen
+===start_screen
 
+<h1> Hollow Plight <h1>
+<h2> Case 1 begins <h2>
+    +[START]
+    
+->crime_scene
 
 //Case 1 to 2 Transition        
 ===case1_close
 
-<h2> Case 1 Ends <h2>
+<h2> Case 1: Fool in yellow Ends <h2>
     +[Continue]
     
-<h2> Case 2 Begins <h2>
+<h2> Case 2: Begins <h2>
     ->scene1
     ->DONE
  
@@ -208,6 +215,7 @@ VAR kniferelictarot = 0
         -> murder_loop
     
        ++[Close Case]
+            ~deduce_success += c2
         ->case2_close
         
         ++[Go Back]
@@ -216,7 +224,7 @@ VAR kniferelictarot = 0
 //Case 2 to 3 Transition        
 ===case2_close
 
-<h2> Case 2 Ends <h2>
+<h2> Case 2: Facade Ends <h2>
     +[Continue]
     
 <h2> Case 3 Begins <h2>
@@ -424,7 +432,7 @@ You awaken to a loud banging on the door followed by a low voice.
    - You peer off to the distance, and notice the looming darkness as the sun stretches it rays amidst the horizon. You take a look at the watch you forgot to take off last night and see its 5 o'clock sharp.
    "You look as sharp as ever" you snide back
    
-   "Its going to be a long day bud [ Insert Branch Dialogue for Case 1 Ending]", he grimaces. His eyes glimmers a mysterious yellow hue.
+   "Its going to be a long day bud", he grimaces. His eyes glimmers a mysterious yellow hue.
    
  *[Get dressed]
     You return back inside and get dressed.
@@ -443,7 +451,7 @@ The car gives a loud vroom as he starts his classy 80's roadster. He sets off to
 "Not much, the robbery case doesn't make any sense. His motive doesn't match a typical bank robbery. The person was well off and had no prior history of assault. Person is basically your average Joe."
 
 *[None]
-"I could't get an ounce of sleep" Nothing makes sense. The robbery seemed facilitated. The case proceeded suspicious smoothly. [Clue Check Fingerprints] 
+"I could't get an ounce of sleep" Nothing makes sense. The robbery seemed facilitated. The case proceeded suspicious smoothly.
 - "All that matter is we caught the dude. He admitted to his crimes, just let the higher ups deal with him. "
 
 *[Ask question back]
@@ -1355,9 +1363,18 @@ No response.
 "And this... cult told you to kill Monica?" You ask inquisitively. Carl nods his head vigorously as confirmation.
 He starts to whisper again. You lean in order to hear him.
 "with her gone they'll control the whole city..." He says. A pit starts to form in your stomach as upon hearing this. You look at Carl, who's now repeatedly muttering something under his breathe. He's not all there anymore... 
+->case3_close
 
-REMEMBER TO DELETE THIS PLACEHOLDERRRRRRRRRRRRRR TO TEST ENDINGS-----------------
-->begining_of_good_ending
+//Case 3 to Ending      
+===case3_close
+
+<h2> Case 3: From the Ashes ends <h2>
+    +[Continue]
+    
+<h2> Ending Begins <h2>
+    ->dream_sequence
+    ->DONE
+ 
 
 ===case3_deduce
     "These motherfuckers. Why do they make no fucking GOD DAM sense. Would it hurt for the love of god for things to make some sense. I'm about to lose to my mind. He's spewing some shit thats not even english. He could be high as the sky. Let me run down the facts first."
@@ -1365,7 +1382,7 @@ REMEMBER TO DELETE THIS PLACEHOLDERRRRRRRRRRRRRR TO TEST ENDINGS----------------
     
 =case1
     *[Doubt]
-    {There's no way that robbery was connnected. | I seen plenty of crazies commit crimes for the thrill. | Theres no coincidence unless I see hard facts.}
+    {~There's no way that robbery was connnected. | I seen plenty of crazies commit crimes for the thrill. | Theres no coincidence unless I see hard facts.}
         **[Yes]
             
         ->case2
@@ -1398,6 +1415,7 @@ REMEMBER TO DELETE THIS PLACEHOLDERRRRRRRRRRRRRR TO TEST ENDINGS----------------
     { ~ Sarah did not kill herself. She was murdered. | She had good luck to be wealthy, but the worst luck to dabble in the occult. Couldn't she just pick up something a little normal. | She was definitively manipulated into something and then silenced. | Nobody commits suicide in their prime.}
         **[Yes]
         ~ending += good
+        ~deduce_success += c3
         ->end
         
         **[No]
