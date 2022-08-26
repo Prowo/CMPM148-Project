@@ -46,9 +46,25 @@ VAR kniferelictarot = 0
 <center><h1> Hollow Plight <h1>
     *[START]
 -<center><h2> Case 1 <h2>
-    +[Begin]
+
+    +[Begin Case 1]
+    ->crimeScene1
+   
+    +[Case 2]
+     <center>Note: Cases must be played in order to obtain the true ending. 
+     ++[Skip to Case 2]
+        ->location_description
+    ++[Begin Case 1]
+    ->crimeScene1
+    +[Case 3]
+    <center>Note: Cases must be played in order to obtain the true ending. 
+     ++[Skip to Case 3]
+        ->->bank_description
+    ++[Begin Case 1]
+    ->crimeScene1
     
-->crimeScene1
+    
+
 
 ===crimeScene1===
 The wind howls between the tall skyscrapers, crows cawing in the early fog filled hours. Shivering, you tighten your grip on your coat.
@@ -220,7 +236,7 @@ You realize that thinking about not thinking about something isn’t really help
 	"Lets see what{| else} we've got."
 	~misc+=reviewedCase
 	
-	*{C1_evidence ? (ToD1, ToD2)}Doc said he died at 4 AM?
+	**{C1_evidence ? (ToD1, ToD2)}Doc said he died at 4 AM?
 				They’re usually right on the money with their TOD’s, but this one feels wrong... What evidence explains this feeling?”
 				***{C1_evidence ? moneyIssues}[The victim's money issues]
 				    ...Hmm nope. Oh well, I'll think on it some more later.
@@ -232,7 +248,15 @@ You realize that thinking about not thinking about something isn’t really help
 				***{C1_evidence ? ledger}[The financial records]
 				...Hmm nope. Oh well, I'll think on it some more later.
 				->Review
-	
+	**[Victim]
+	    Francis Thurston, 41 years old, unmarried owner of the cafe Yellow King Delights. Has a brother, George Thurston, 37, who is married with two children. Well liked by the community, but not the most social person outside of working hours.
+	    ->Review
+	**[Autopsy Report]
+	    Death was due to bloodloss caused by a deep stab wound to the chest, approximately at 4 AM. Due to the wound, it seems like it took at least half an hour for him to bleed out.
+	    ->Review
+	**[Witness]
+	    Ammity Pierce, male, 42. A homeless man who is well known in the area.
+	    ->Review
 	++[That's enough for now]
 	->PoliceStation
 +{misc ? reviewedCase}[Talk to Howard]
@@ -242,17 +266,18 @@ You realize that thinking about not thinking about something isn’t really help
 
 +(witnessQ){misc ? reviewedCase}[Interview witness]
 	You decide it’s time to interview your witness, even if it ends up fruitless, it is your job after all. Making your way to the interrogation room, you wave at {misc ? knowName: Rich| the officer} as they {let you in.|stammer nervously.->failWitness} Quietly you take a seat at the plain white table, opposite the man you’re here to see. Looking him over, he looks to be in his 30’s, with a scraggly brown beard and frayed eyebrows. He’s wearing department clothes for shock victims, blanket included. But you do notice one thing right away…
-	**His eyes
+	**[His eyes]
 		Darting around the room, looking for something. You’ve seen insane people before, but the odd thing is the glances don’t appear random. There’s a rational behind them. 
 		VAR eyes = true
-	**His hand
+	**[His hand]
 		While its a bit faded, you can make out certain rough callouses, like those you find on dock workers. Interesting.
 		VAR job = true
-	**His smell
+	**[His smell]
 		You regret focusing on that, and can’t think of anything else now.
 --“Good morning, my name is Tony, a detective for the Dunwich PD. What’s your name?”
 The man’s eyes shoot towards you, boring a hole into your being. “I have no name, I killed it. You should too, if you don’t want to…” He trails off, gazing off into the ether. Looks like it’s going to be one of those days, the question is how to approach this.
-	{eyes == true}[Buy in, this man isn’t insane]
+	
+	***{eyes == true}[Buy in, this man isn’t insane]
 		You take a deep breath, leaning in close. “I believe you. You’re not insane are you? Please help me, tell me exactly what you saw.”
 The man stares deep into your eyes, and says, perfectly calmly, “I saw a man in a suit, i think it was a lawyer, go in around 2:30. They… they had an argument. Then suddenly the stranger pulled out this weird knife and stabbed him! And and, there was this strange light! And oh god, fuck, the eyes. THE EYES! EVERYWHERE, ALL OH GOD PLEASE NO!”
 
