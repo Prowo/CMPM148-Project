@@ -83,7 +83,7 @@ Howard, attempting to justify calling you out, explained that "since it’s a mu
             5:41, you booked it, albeit begrudgingly, right when you got the call 30 minutes ago. It’s a bit unsettling, you know just how sleepy this city can be but you would have thought there would be some activity by now. But aside from fellow officers, not a creature is in sight. 
             +++[Back]->investigateScene
 +[Sip your coffee]
-	Damn it’s {cold |really cold|empty... You notice Howard chuckle as he sees you groan at your empty mug |still empty}.
+	Damn it’s {cold |really cold|empty... You notice Howard chuckle as he sees you groan at your empty mug {~relationship+=10}|still empty}.
 	->investigateScene
 *(store)[The store]
 	The store appears to be a small breakfast café. You can see 5 tables for outside eating, and 5 more plus a bar area inside. The glass is shattered, but the sign showing the hours is still attached to what glass remains. You see a few beat cops examining the inside.
@@ -348,7 +348,7 @@ As you flash your badge, you just barely notice Fredrick's grin slowly melt away
 	 Fredrick nods, pulling out a deck from his briefcase. The back of the cards is intricate, the strange spiral patterns entrancing. But right as he goes to hand them to you, he sighs, "Tragically, I actually lost some of my cards recently. If you end up finding it though I'd be happy to give you a reading sometime."
 	 "Will do, Mr. Doss."
 	 ~C1_evidence+=tarotDeck
-	-->Fredrick
+	->Fredrick
 *{C1_evidence ? tarotDeck}[Leave]
 "Well I've kept you long enough, have a nice day Mr. Doss. I'll keep an eye out for those cards of yours!"
 "Appreciated officer. Have a nice day."
@@ -450,10 +450,15 @@ You smile, and pull out your notes on the case.
     "So you were just guessing?"
     "...yeah."
     Howard sighs, muttering to himself as he walks off, leaving you to finish the paperwork.
+    
+    CASE CLOSED?: FOOL IN BLUE (YOU)
     ->DONE
     
 ===goodEnd1
 “My guess is that despite how things looked, Mr. Thurston wasn’t doing so hot financially. When we checked out the body I noticed his clothes were old and a bit patchwork in places. Probably couldn’t keep making the payments and when Fredrick showed up in person to ask why he hadn’t been paid he decided to make sure he got his due. Only thing I haven’t figured out is why Thurston was paying in the first place.”
 “Eh, don’t worry too much about it. Good work, Tony. I’ll handle the paperwork, as a thank you.”
 You smile, walking off happy at a successful case.
+
+CASE CLOSED: FOOL IN YELLOW
 ->DONE
+
