@@ -28,14 +28,15 @@ Howard, attempting to justify calling you out, explained that "since it’s a mu
 -->investigateScene
 ===investigateScene
 	You take a look at the scene, the sleepy dark gray cityscape smirched with the blood oozing down into the gutter. {Where to start…|What next…}
-	+(body)[The body]
-		You crouch down taking a look at the corpse. Looks to be a male, middle aged, slumped over on the sidewalk from an injury to their chest. Bloodstains coat the sidewalk and down into the gutter. It’s a lot of blood. 
+	*(body)[The body]
+		{You crouch down taking a look at the corpse. Looks to be a male, middle aged, slumped over on the sidewalk from an injury to their chest. Bloodstains coat the sidewalk and down into the gutter. It’s a lot of blood.|} 
 		**[Examine the clothes]
 			The man is wearing a simple white undershirt with vertical light gray stripes under a nice green overcoat, although upon looking closely you can see spots where it has been sewn up to fix holes. The yellow scarf around his neck is stained with blood in places, a shame as it appears to be handmade. The man is wearing simple blue jeans, well worn at the knees, and warm winter shoes, stuffed with cotton for extra warmth.
 			***[DEDUCE]
 				This feels noteworthy. Looking at these clothes I feel like the victim was 
 				****extremely well off
-				->body
+				"Hmm maybe. Anyways enough musing, gotta get back to work." ->body
+				//->body
 				****struggling financially
 				    ~C1_evidence+=moneyIssues
 				    Yeah, that makes sense. But why would this guy have money issues if the cafe is doing so well? ->body
@@ -75,16 +76,16 @@ Howard, attempting to justify calling you out, explained that "since it’s a mu
                 ---"Got it, thanks."
                 ->body
                 
-			         --->investigateScene
-	+(street)[The street]
+			     ++[Back]->investigateScene
+	*(street)[The street]
 		Glancing around the street you see at both ends an officer keeping out any potential passersby. Not that they really need to worry, as things are dead quiet right now. This street winds its way, eventually, through most districts of the city. Yet it tends to serve as a detour route, as there’s almost always a more direct route to wherever you need to go. As such, businesses here tend to attract a small strange mix of clients, where you’ll find a judge in line with a dock worker or a cop a table over from an accountant. 
 		**[Check your watch]
             5:41, you booked it, albeit begrudgingly, right when you got the call 30 minutes ago. It’s a bit unsettling, you know just how sleepy this city can be but you would have thought there would be some activity by now. But aside from fellow officers, not a creature is in sight. 
-            --->investigateScene
+            +++[Back]->investigateScene
 +[Sip your coffee]
 	Damn it’s {cold |really cold|empty... You notice Howard chuckle as he sees you groan at your empty mug |still empty}.
 	->investigateScene
-+(store)[The store]
+*(store)[The store]
 	The store appears to be a small breakfast café. You can see 5 tables for outside eating, and 5 more plus a bar area inside. The glass is shattered, but the sign showing the hours is still attached to what glass remains. You see a few beat cops examining the inside.
 	**[Check the glass]
 		You examine the glass, or what’s left of it. You hear the crunch of it under your new shoes, gritting your teeth slightly as you hope you didn’t deal any damage to them. Taking a look at the part still holding firm, you examine the sign.
@@ -118,8 +119,10 @@ Howard, attempting to justify calling you out, explained that "since it’s a mu
 			++++”Thank you for your time.”
 					->store
 					}
+	    ++[Back]->investigateScene
 	*[Your shoes]
 		Staring at your feet, you admire your new black Luther shoes. It’s a new brand, and boy are you glad you gave it a shot. With all the walking you have to do it’s important to have good heel support…
+		->investigateScene
 
 	{C1_evidence ? (ledger, ToD1):
 	+(wrap)[Wrap up]
