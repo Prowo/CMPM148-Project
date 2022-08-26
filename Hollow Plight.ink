@@ -2,6 +2,9 @@
 
 //global variables
 LIST ending = good
+LIST cult_clues = knife, relic, tarot
+LIST deduce_success = c1, c2, c3
+VAR relationship = 30
 
 //  Case 2 Variables
 LIST locationsVisited = home, bankvisit, jobvisit, ftvisit
@@ -9,11 +12,6 @@ LIST fortune_teller_state = decline, wary
 LIST evidence_found = pills, cash, ID, business_card, tarot_card
 LIST clues_found = cash_clue, pills_clue, card_clue, job_clue, coroner_clue, ft_clue
 // LIST case_state
-
-// Case 3 Variables
-// only "global" variables I use
-VAR relationship = 30
-VAR suspicion = 0    // possible variable idk
 
 // local variables to this case 3
 VAR know_about_case = false
@@ -26,6 +24,24 @@ VAR giveSafe = false
 VAR callHoward = false
 VAR kniferelictarot = 0
 
+//Functions
+//returns boolean if items in LIST
+ // x == list, y == item 
+=== function has (x,y)
+    ~ return x ? y
+
+
+
+//Case 1 to 2 Transition        
+===case1_close
+
+<h2> Case 1 Ends <h2>
+    +[Continue]
+    
+<h2> Case 2 Begins <h2>
+    ->scene1
+    ->DONE
+ 
 
 //-------------------------CASE 2 ----------------------------
 
@@ -140,14 +156,15 @@ VAR kniferelictarot = 0
             
             **[Console]
             "That's why we are the best at what we do. Whether that be because of the shit we've seen or had little no one cares for justice. We both are trying to make the world a better place. One fucking case at a time. I feel the same thing everyday, Howard. Yet, as long as I can make my wife and kids from leaving a crime-induced world, I'll be happy."
-            ~relationship +=15
+            ~relationship +=10
             ->department_colleauge
         
             **[Argue]
                 "Come on, Howard. We both been in the biz for 10 years. Never had I once thought about quitting this gruesome job. We are doing god's work punishing these criminals and putting them in their place. As long as I live justice will never get old. This job is my dogma.
-                ~relationship -=15
+                ~relationship -=10
             -> department_colleauge
         *[Leave]
+            "Talk to you later, Howard."
         ->department
         
 === case2_deduce
@@ -159,6 +176,7 @@ VAR kniferelictarot = 0
     ->murder_loop
     
     +[Not right now]
+    You set the report aside.
     ->department
     
     -(suicide_loop)
@@ -194,9 +212,16 @@ VAR kniferelictarot = 0
         
         ++[Go Back]
         ->case2_deduce
-        
+
+//Case 2 to 3 Transition        
 ===case2_close
-->DONE
+
+<h2> Case 2 Ends <h2>
+    +[Continue]
+    
+<h2> Case 3 Begins <h2>
+    ->dream_sequence
+    ->DONE
  
 ===bank_description
 
@@ -425,7 +450,7 @@ The car gives a loud vroom as he starts his classy 80's roadster. He sets off to
 "How much did you get? Since you had to pick me up so early. I guess we have a long drive to the crime scene."
 
 -" I had to take some pills to even get sleep. I almost arrived late to get you to be honest. But, we got a job to do. Thank for asking," he replies wholeheartedly with a bright smile.
-    ~relationship +=10
+    ~relationship += 5
 
 
 *[Sip coffee]
@@ -548,6 +573,7 @@ There's only a purse, with a few items. You found a bottle of pills, wallet, and
             <i>I need to find out more of this Tarot stuff, there seems to be something happening behind the scenes. <i>
             }
              ~evidence_found += tarot_card
+             ~cult_clues += tarot
             ->wallet
             
         * * *{wallet > 1}[Put back wallet]
@@ -569,7 +595,7 @@ There's only a purse, with a few items. You found a bottle of pills, wallet, and
 //              you don't open it bc Howard takes it with him, you find the suspect but that's it
 //              you do Not learn the cult exists and you feel like something is gonna happen
 
-->dream_sequence
+
 === dream_sequence ===
 It's... cold.
 
@@ -1317,6 +1343,7 @@ No response.
     You take out the relic from the safe and begin to unwrap it-
     Carl doesn't let you proceed as he begins to shout profusely, "NO PLEASE STOP! I'LL TELL YOU EVERYTHING JUST DON'T UNWRAP IT."
     You let out a sigh of relief. You didn't want to reveal the figure. The events from last time still lingering in your memory.
+    ~cult_clues += relic
     
 - "Please they forced me to do it... please I'll be safer here. Please just lock me up." He says between sobs. It's clear to you that he is very scared... of what you're still not sure.
 
@@ -1380,10 +1407,12 @@ REMEMBER TO DELETE THIS PLACEHOLDERRRRRRRRRRRRRR TO TEST ENDINGS----------------
 =end
 { ending ? good}
 <>  "I always wondered, Howard. What type of person you are? I am going to settle this by my own hands."
+    ->begining_of_good_ending
 
 {ending !? good}
 <> "Howard, you better have a good dam reason. We been partners through thick and thin. Thats trust I won't fucking betray."
-}
+    ->dont_believe
+
 
 
 // DO A DEDUCE HERE and look at all clues found so far... if enough clues are found then you believe him and go to the true ending of finding out Howard is in the cult.
@@ -1744,7 +1773,7 @@ By the time he's out of prison. The cult will all be a distant memory.
 
 You head back home after a long day.
 Tomorrow you're back to work, a lot has to be done before Howard's back.
-->DONE
+->end_screen
 
 === good_arrest_howard ===
 "I don't want to kill you Tony."
@@ -1769,7 +1798,7 @@ You know by now that many more people are a part of this. Pretending to be every
 But you make a promise to yourself that you'll uncover the truth.
 
 One day Howard will talk, after all he's your partner.
-->DONE
+->end_screen
 
 === confront_howard ===
 "We have to start from scratch Tony. ◻◻◻’ ◻◻ will change everything!" Howard says, he's calm once again.
@@ -1793,9 +1822,21 @@ In reponse Howard brandishes a knife he's had on him this whole time.
     <i>He's too far gone.</i>
     You instinctively reach for your gun and pull the trigger.
     **[BANG]
+    { -has(cult_clues, (knife, relic, tarot)):
         Howard falls to the floor. Blood begins to pool around him.
         You also fall to the floor and begin to sob.
         ->aftermath
+        
+        -else:
+        BANG! BANG!
+        You feel a sharp pain in your chest. You stare down to see blood coming out your chest. Your adrenaline is haywired and staring back up you see the smoke still coming of barrel of Howard's gun. His mouth is moving but my head keeps ringing. He's slowly appoaching me and try to reach out to him, but I feel myself giving out and hitting the floor. I see Howard's face close to mine. He whispers, "I'm sorry."  I can see a tear run down his eye.
+        
+        "I'm sorry, Tony. I did't want this to be like this, but you pulled the gun. It's not my first time killing people, but you hesitated and I shot on reflex. Don't worry I will take care of your family, but the cult will live on. You died valiantly supporting the cult."
+        ->end_screen
+        
+            
+        
+    }
 *[Arrest Howard]->arrest_howard
    
 ->DONE
@@ -1803,11 +1844,11 @@ In reponse Howard brandishes a knife he's had on him this whole time.
 === arrest_howard ===
  Howard lunges towards you with the knife.
     You, mostly, dodge it as he scratches the side of your arm.
-    **[Punch]
+    *[Punch]
         You throw a punch at him, but he blocks it and lands one of his own. You quickly stumble back to avoid another slash.
-    **[Kick]
+    *[Kick]
         You decide to switch things up a bit and attempt to kick Howard. You land a hit but it's not as effective as you thought it would be. You jump back to avoid another slash.
-    **[Grab Knife]
+    *[Grab Knife]
         Howard holds the knife with his right hand. As he attempts another slash you grab hold of his hand. Trying to pry the knife from him is unsuccessful as he leaves a gash on your hand.
 - In a last ditch effort you tackle Howard. You feel a sharp pain in your shoulder as the knife plunges into you. You manage to subdue Howard but the pain in your shoulder is severe. 
 "You're under arre-"
@@ -1818,11 +1859,21 @@ With one swift motion, as if he's practiced this hundreds of times, Howard bucks
 *"HOWARD!"
     He wrests your gun from your body and...
     **[BANG]
+    { - has(cult_clues, (knife, relic, tarot)) :
         You instinctively close your eyes but after several moments you realize that you're alive.
         You open your eyes to see Howard's lifeless body. He shot himeself...
         <i>Why didn't he shoot me?</i>
         You back away from Howard and begin to sob.
-->aftermath
+        ->aftermath
+        
+        -else:
+        Howard jumps back, holding the gun upright. "I won't be needing this," he states and throws the gun to side away from you. " I'm sorry Tony, but this is the end." You feel your head throbbing and the room starts shaking profusely. Howard's eye start glowing yellow. "Every since you came into my domain, you were already trapped. You know I don't make mistakes. I just wanted to play with my prey. They are best served filled with regret and despair." He starts laughing manically and your heart starts beating faster. "You will make a great sacrifice, you have been doing constant cases and your fatigue has caught up to you. "How do you think I have the energy to wake up so early and be behind the cult? Because my god lets me siphons emotions from my prey and fuels me with power. HAHAHHAHA. He stares right into my eyes and I feel my heart stop. "You will be my fattest feast, as he growls while he likes his lips in a circular motion. This is then end, partner." You faint and hit the floor with a thud.
+        ->end_screen
+        
+            
+        
+    }
+    
 
 === aftermath ===
 After some time you compose yourself and call the only person you trust.
@@ -1838,5 +1889,51 @@ They tear the house apart and find several things suggesting an <i>organization<
 You finally go home.
 
 Tomorrow you're back to work.
-->DONE
+->end_screen
 
+===end_screen
+<h2> The End <h2>
+
+<b>Play the game again to find different endings. <b>
+
+Case 1 Clues Found: { LIST_COUNT(clues_found)} / ?
+Major Relic Found: { - has(cult_clues, knife) :
+                        <> Knife: A weapon that has been stained by countless victims. It is said that anyone that wields the knife will be filled with bloodlust losing any reason they have.
+                    -else:
+                        <> None
+                    }
+Deduce: { - has(deduce_success, c1) :
+                        <> Success
+                    -else:
+                        <> Failed
+                    }
+
+
+Case 2 Clues Found: {LIST_COUNT(clues_found)} / 6
+Major Relic Found: {  - has(cult_clues, tarot):
+                       <> "Wheel of Fortune:" A tarot card that draws the will of those around them and twist their fates togther.
+                    -else:
+                        <> None
+                    }
+Deduce: { - has(deduce_success, c2) :
+                        <> Success
+                    -else:
+                        <> Failed
+                    }
+
+
+Case 3 Clues Found: {LIST_COUNT(clues_found) }/
+Major Relic Found:{ - has(cult_clues, relic):
+                        <> Picture: A strange relic that inflict sanity for those around it. If reacts to fresh human blood and gives off a glow yellow light.
+                    -else:
+                        <> None
+                    }
+Deduce: { - has(deduce_success, c2) :
+                        <> Success
+                    -else:
+                        <> Failed
+                    }
+
+                    
+<h4>Made by Steven Au, Ashley Perez, and Will Tate<h4>
+->END
