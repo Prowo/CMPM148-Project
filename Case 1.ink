@@ -1,6 +1,6 @@
-LIST C1_evidence = moneyIssues, ToD1, ToD2, ledger, lawyer, ToD3, kid, tarotDeck, tarotCard
+LIST C1_evidence = moneyIssues, ToD1, ToD2, ledger, lawyer, ToD3, kid, tarotDeck, tarotCard, alley, knife
 
-LIST loc1 = (crimeSceneloc), (officeloc), kidsHouseloc, lawfirmLoc
+LIST loc1 = (crimeSceneloc), officeloc, kidsHouseloc, lawfirmLoc
 
 LIST misc = knowName, reviewedCase 
 
@@ -249,30 +249,104 @@ sorry, he asked to leave and we had no reason to refuse.
 ===kidsHouse
 After a long drive to the outskirts of the city, you finally arrive at the address Howard gave you.
 ~loc1-=kidsHouseloc
+It's a simple house, in an average neighborhood. A bit on the small side, but it looks well cared for. With a sigh, you gather yourself and approach the front door.
+*[Knock]
+Knock Knock
+You hear the shuffling of feet as someone makes their way to the door. After a minute, it opens.
+"...What." A kid asks, as they open the door. Wearing a black hoodie a size too large, jeans, and with an embarrassing amount of hair gel, just looking at them makes you cringe at your past self. But fortunately, this looks like the person Howard was talking about.
+
+"Are you," you glance at your notepad, "Johnathan Thurston?"
+
+"Yeah, but it's Johnny. Why? Did someone complain about my art again?" Johnny grumbles.
+
+**"Your art?"
+"Oh, it's not about that? Sweet!" Johnny visibly relaxes, scratching the back of his neck bashfully. "Yeah, I like to make graffiti. Uncle Francy lets me paint the alleyway by his store. And when I'm done he pays me in some of the leftover cookies!"
+
+Oh. 
+
+Well fuck. 
+Guess he hasn't had the news broken to him yet. Better be careful to not slip up, or the kid might clam up.
+~C1_evidence+=alley
+
+***"That's sweet. Did you go over and paint anytime recently?"
+    Johnny grumbles, "Nah. I was originally supposed to come paint tonight but last week he told me a friend would be visiting. I didn't get why that'd be an issue but apparently they're going to be talking about some uh, confidential things? Was really serious, which was kinda weird. But eh, I'm willing to wait a few days."
+    
+    "Confidential? That's interesting. Do you know who this friend was?"
+    
+    "Uhm," Johnny takes a minute to think, "Some lawyer guy? I think his name was Fredrick?"
+        You think on that, and remember seeing that name in the paper a few days ago, if you recall correctly he is at Craftson and Smith, a relatively new law firm. "Gotcha, thank you Johnny, I'm going to go follow up with him."
+        Johnny waves, watching as you leave.
+        ~C1_evidence +=lawyer
+        ~loc1-=kidsHouseloc
+        ****[To Craftson and Smith]
+        ->Lawfirm
+**"No, I need to ask you a few questions."
+        "Okay, what?"
+        "Where were you last night? Specifically from the time 3 to 5 AM."
+        "Uh, I was asleep? I was planning on going to my Uncle's cafe but he said a friend would be visiting. I didn't get why that'd be an issue but apparently they're going to be talking about some uh, confidential things? Was really serious, which was kinda weird. But eh, I don't mind.
+        
+        "Confidential? That's interesting. Do you know who this friend was?"
+    "Uhm," Johnny takes a minute to think, "Some lawyer guy? I think his name was Fredrick?"
+        You think on that, and remember seeing that name in the paper a few days ago, if you recall correctly he is at Craftson and Smith, a relatively new law firm. "Gotcha, thank you Johnny, I'm going to go follow up with him."
+        Johnny waves, watching as you leave.
+        ~C1_evidence +=lawyer
+        ~loc1-=kidsHouseloc
+        ***[To Craftson and Smith]
+        ->Lawfirm
+//        ***
 ->chooseLoc
 
 ===Lawfirm
-You arrive at the law offices of Craftson and Smith. Walking inside
+You arrive at the law offices of Craftson and Smith. Walking inside, you see a secretary typing away at a desk.
 +(secretary)[Talk to secretary]
-    *[Make small talk]
-    *[Ask about Fredrick]
-	Says hes a bit odd and will be in shortly. Member of this strange club
-    *[Ask about her]
-	Reveals she got yesterday off
-After picking one leads into Fredrick showing up
--you see him arrive 
+    **[Make small talk]
+    "Hello Miss. Fine weather today isn't it? Just the best kind of gloomy gray."
+    She smirks, "Mhm, if you squint hard enough you can even fool yourself into thinking the sun is peaking through the fog."
+    ->secretary
+    **[Ask about Fredrick]
+	"Hello Miss, I'm here for a man named Fredrick?"
+	"Oh, Freddy? He should be in momentarily, he left for lunch 40 minutes ago. Feel free to take a seat."
+	"Will do, and thanks."
+    //**[Ask about her]
+	//Reveals she got yesterday off
+
+
+After waiting for some time, you see a tall, lanky man in a deep purple suit walk in. He flashes the secretary a grin as she gestures to you.
+"You have a visitor Mr. Doss. Mr. uh, I'm sorry, I didn't catch your name?"
+
+You stand up, brushing yourself off. "Tony. Officer Tony, Dunwich PD. I have a few questions for you Mr. Doss."
+As you flash your badge, you just barely notice Fredrick's grin slowly melt away.
+"Ask away officer, what do you want to know?"
 ->Fredrick
-=Fredrick
-*[Where were you last night?] Finishing up some work at home, no one can corroborate
-->Fredrick
+===Fredrick
+"{To start, I want to ask if..."|Next, "}
+*"Where were you last night?"
+    "Last night? Well I took the night off and relaxed at home, I had just closed a big deal on Friday see. Can't be all work and no play if you know what I'm saying?"
+    **"Mhm sure."
+        ->Fredrick
+    **"Anyone able to corroborate that?"
+        "My cat, Nigel. Other than him no, unfortunately."
+        ->Fredrick
 *[Do you know victim] Has done some trademarking work for him, but hasn’t worked for him in awhile
 ->Fredrick
-+[Ask about hobbies] (reoccurring choice) reveals tarot interest, but lost some of the cards
-	**[Mind giving me a reading?] clue get
+*"Do you have any hobbies?"
+    "I uh, is this really necessary?"
+    "I find questions like these help me understand people better, plus it tends to help them relax. So yes."
+    Fredrick smiles, chuckling softly. "Unfortunately I don't have much time for hobbies. I do however enjoy Tarot readings. Find them fascinating."
+    "Isn't that interesting?" You smile, "My friend, Howard, also is really into those Tarot things. I can't quite understand them. By the way,
+	**"Mind giving me a reading?"
+	    Fredrick nods, pulling out a deck from his briefcase. The back of the cards is intricate, the strange spiral patterns entrancing. But right as he goes to set them on the counter, he sighs. "Shoot, I forgot, I actually lost some of my cards recently. If you end up finding it though I'd be happy to give you a reading!"
+	    "Oh, I'll keep an eye out then."
 	~C1_evidence+=tarotDeck
 	->Fredrick
+	**"Mind letting me see them?"
+	 Fredrick nods, pulling out a deck from his briefcase. The back of the cards is intricate, the strange spiral patterns entrancing. But right as he goes to hand them to you, he sighs, "Tragically, I actually lost some of my cards recently. If you end up finding it though I'd be happy to give you a reading sometime."
+	 "Will do, Mr. Doss."
+	 ~C1_evidence+=tarotDeck
 	-->Fredrick
 *{C1_evidence ? tarotDeck}[Leave]
+"Well I've kept you long enough, have a nice day Mr. Doss. I'll keep an eye out for those cards of yours!"
+"Appreciated officer. Have a nice day."
 ~loc1-=lawfirmLoc
 ->chooseLoc
 ===chooseLoc
@@ -289,10 +363,26 @@ You head out. Where to next...
 or
 
 ===crimeScene2
-[return to the crime scene] return, go inside
-[check register] find bloody tarot card
-[check safe] gives payment log clue if not gotten earlier, finds membership card to some club
-[check alley] find knife in dumpster, it has strange carvings, blood 
+Yellow King Delights
+
+5 : 30 PM
+
+You drive back over to the scene of the crime. It's been taped off, but there isn't any foot traffic here to worry about. Odd.
+Collecting your thoughts, you think about anything you might have missed.
+Let's get to work.
+->inv2
+===inv2
+*[check register]
+You head inside and double check the register. You just barely make out a slip of paper wedged underneath the drawer.
+"Hm? What is this?"
+Pulling it out, you realize it is a tarot card, The Fool{C1_evidence ? tarotDeck: and the marks on the back are identical to the deck Fredrick had}. While the back is normal, the front of the card has a bloodstain on it.
+~C1_evidence += tarotCard
+->inv2
+//[check safe] gives payment log clue if not gotten earlier, finds membership card to some club
+*{C1_evidence ? alley}[check alley]
+    Taking a peak down the alley Johnny mentioned, you can see the graffiti he mentioned. Honestly, it's pretty good. However your attention is drawn towards something glittering in the trash. As you pull it out, you find in your hand a strange knife, coated in carvings and covered in blood.
+    ~C1_evidence += knife
+    ->inv2
 ->chooseLoc
 
 ===Office2

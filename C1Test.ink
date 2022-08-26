@@ -44,7 +44,7 @@ Anyways, [C] continued as we approached the scene, “Here we are. Welcome to my
 					~relationship-=5
 					->HContinue
 			***(HContinue)[let Howard continue]
-				-"So death was due to blood loss, seems like it wasn’t quick either. Poor sod bled out slowly, with no one around to notice. Oh yeah, judging by the injury it looks like it was due to a knife, a long one too. Almost hit Francie’s heart, but looks like he wasn’t that lucky. Time of death was a bit before 4AM, according to Doc’s early estimate, and probably was stabbed 20 minutes prior.
+				---"So death was due to blood loss, seems like it wasn’t quick either. Poor sod bled out slowly, with no one around to notice. Oh yeah, judging by the injury it looks like it was due to a knife, a long one too. Almost hit Francie’s heart, but looks like he wasn’t that lucky. Time of death was a bit before 4AM, according to Doc’s early estimate, and probably was stabbed 20 minutes prior.
 				~C1_evidence += ToD1
 			{C1_evidence ? (ToD1, ToD2):
 			    ++++”Wait, you said 4 AM?”
@@ -67,12 +67,12 @@ Anyways, [C] continued as we approached the scene, “Here we are. Welcome to my
                 ---"Got it, thanks."
                 ->body
                 
-			         ---->investigateScene
+			         --->investigateScene
 	+(street)[The street]
 		Glancing around the street you see at both ends an officer keeping out any potential passersby. Not that they really need to worry, as things are dead quiet right now. This street winds its way, eventually, through most districts of the city. Yet it tends to serve as a detour route, as there’s almost always a more direct route to wherever you need to go. As such, businesses here tend to attract a small strange mix of clients, where you’ll find a judge in line with a dock worker or a cop a table over from an accountant. 
 		**[Check your watch]
             5:41, you booked it, albeit begrudgingly, right when you got the call 30 minutes ago. It’s a bit unsettling, you know just how sleepy this city can be but you would have thought there would be some activity by now. But aside from fellow officers, not a creature is in sight. ~ELDRITCH +=1
-            -->investigateScene
+            --->investigateScene
 +[Sip your coffee]
 	Damn it’s {cold |really cold|empty... You notice Howard chuckle as he sees you groan at your empty mug |still empty}.
 	->investigateScene
@@ -91,23 +91,23 @@ Anyways, [C] continued as we approached the scene, “Here we are. Welcome to my
 	**[Talk to the cops]
 			“Morning, Detective Tony here, I’ve been assigned this case. Mind filling me in?”
 			One of the beat cops jumps slightly, nearly dropping their pen. “O-oh mornin’ to you too sir! Well it seems like a standard robbery gone wrong, the vault in the back is busted open and the register is as empty as my coffee mug. Unfortunately.” They gaze solemnly at their mug, every beat cop’s closest companion. Poor sod. With a sigh, they straighten their cap and jot something on their clipboard, returning to a more serious tone. “Apparently the owner was getting ready to open and the perp took advantage of that.”
-			--(Richy)
-			***”Any witnesses?”
+			***(Richy)[Ask a question]
+			****”Any witnesses?”
 				“There’s only one, and uh, they don’t seem to be a reliable one. Homeless man was in a nearby alley and tells one hell of a story about what happened. They’re questioning him back at the station but I doubt anything will come of it.”
 				->Richy
-			***”How much was taken?”
+			****”How much was taken?”
 				{misc ? knowName: Richard| The officer} flips through the notes on his clipboard, “Looks like about 5000? Well, that plus however much was in the register. The victim tracked how much was in the safe and register at opening and closing each day but looks like they didn’t enter anything for the register before they got killed.”
 				->Richy
-			***”Mind giving me a copy of those logs?”
+			****”Mind giving me a copy of those logs?”
 					{misc ? knowName: Rich| the officer} hands you a copy of the logs.
 					~C1_evidence +=ledger
 					->Richy
-			***”What’s your name?”
+			****”What’s your name?”
 				“Oh, right! Name’s Richard, I just started working here last spring.”
 				~misc += knowName
 				->Richy
 			{C1_evidence ? ledger:
-			+++”Thank you for your time.”
+			++++”Thank you for your time.”
 					->store
 					}
 	*[Your shoes]
