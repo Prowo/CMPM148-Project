@@ -5,8 +5,11 @@
 
 //global variables
 LIST ending = good
+
 LIST cult_clues = knife, relic, tarot
+
 LIST deduce_success = c1, c2, c3
+
 VAR relationship = 30
 
 LIST C1_evidence = moneyIssues, ToD1, ToD2, ledger, lawyer, ToD3, kid, tarotDeck, tarotCard, alley, cult_knife
@@ -490,6 +493,11 @@ Fredrick scoffs, “No, I really don’t. Is this about the case you asked me ab
     "I am." Fredrick smirks, showing his gloved hands, "I wear them everywhere, bit of a germaphobe."
     "Noted."
     ->c1End2
+*[show autopsy report]
+    "As you can see, Mr. Thurston died from bloodloss due to a stab wound."
+    "I see. What about that?"
+    "Uhm, I just thought that was interesting."
+    ->c1End2
 *[show Tarot Card]
 “If I recall correctly, you’re a fan of Tarot, Freddy?”
 “Fredrick. But yes.”
@@ -520,7 +528,7 @@ You smile, and pull out your notes on the case.
     "So you were just guessing?"
     "...yeah."
     Howard sighs, muttering to himself as he walks off, leaving you to finish the paperwork.
-    
+    ~relationship-=10
     ->case1_close
     
 ===goodEnd1
