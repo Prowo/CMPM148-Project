@@ -17,9 +17,9 @@ The wind howls between the tall skyscrapers, crows cawing in the early fog fille
         ->Smalltalk
 
 ===Smalltalk
-The man next to you chuckles sheepishly. His name is Howard, and yours is Anthony, but you only let people call you Tony. You're both Detectives at Dunwich PD, although you're a new transfer. As much as Howard can be a bit shameless with giving you work, he's a good man, and a better friend.
+The man next to you chuckles sheepishly. His name is Howard, and yours is Anthony, but you only let people call you Tony. You're both detectives at Dunwich PD, who been partnered for. As much as Howard can be a bit shameless with giving you work, he's a good man, and a better friend.
 
-Howard, attempting to justify calling you out, explained that "since it’s a murder, protocol is for two of us to be on the scene. And you’re the only one I know would get out of bed at 5 am for me on a Monday."
+Howard, attempting to justify calling you out, explained that "since it’s a murder, the protocol is for two of us to be on the scene. And you’re the only one I know would get out of bed at 5 am for me on a Monday."
 "You know I'm going to stop doing that if you keep abusing the fact I'm willing to do this for you."
 
 "Anyways," Howard continued as we approached the scene, “Here we are. Welcome to my, now former, favorite breakfast joint.” A sour look dredged across his face, taking in the grisly scene. Well, time to get to work.
