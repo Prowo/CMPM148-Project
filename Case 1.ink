@@ -4,25 +4,25 @@ LIST loc1 = (crimeSceneloc), officeloc, kidsHouseloc, lawfirmLoc
 
 LIST misc = knowName, reviewedCase 
 
-VAR eldritch =0
 
 VAR relationship =50
 -> crimeScene
 ===crimeScene===
 The wind howls between the tall skyscrapers, crows cawing in the early fog filled hours. Shivering, you tighten your grip on your coat.
 *   “Why did you call me this early?”
+        You mutter, glaring at the man beside you as you struggle to contain another yawn.
+        ->Smalltalk
 *   “I hate the cold”
-+   Dev command
-    ~C1_evidence += (moneyIssues, ToD1, ToD2, ledger)
-    ->PoliceStation
-Small talk
+        You clutch your coffee mug tightly, the sole warmth you have right now.
+        ->Smalltalk
 
--This is my colleague X, talk about them
-Since it’s a murder, protocal is for two of us to be on the scene. And you’re the only one I know would get out of bed at 5 am for me on a Monday.
+===Smalltalk
+The man next to you chuckles sheepishly. His name is Howard, and yours is Anthony, but you only let people call you Tony. You're both Detectives at Dunwich PD, although you're a new transfer. As much as Howard can be a bit shameless with giving you work, he's a good man, and a better friend.
 
-Small talk
+Howard, attempting to justify calling you out, explained that "since it’s a murder, protocol is for two of us to be on the scene. And you’re the only one I know would get out of bed at 5 am for me on a Monday."
+"You know I'm going to stop doing that if you keep abusing the fact I'm willing to do this for you."
 
-Anyways, [C] continued as we approached the scene, “Here we are. Welcome to my, now former, favorite breakfast joint.” A sour look dredged across his face, taking in the grisly scene. Well, time to get to work.
+"Anyways," Howard continued as we approached the scene, “Here we are. Welcome to my, now former, favorite breakfast joint.” A sour look dredged across his face, taking in the grisly scene. Well, time to get to work.
 
 *[Take a look around]
 -->investigateScene
@@ -79,7 +79,7 @@ Anyways, [C] continued as we approached the scene, “Here we are. Welcome to my
 	+(street)[The street]
 		Glancing around the street you see at both ends an officer keeping out any potential passersby. Not that they really need to worry, as things are dead quiet right now. This street winds its way, eventually, through most districts of the city. Yet it tends to serve as a detour route, as there’s almost always a more direct route to wherever you need to go. As such, businesses here tend to attract a small strange mix of clients, where you’ll find a judge in line with a dock worker or a cop a table over from an accountant. 
 		**[Check your watch]
-            5:41, you booked it, albeit begrudgingly, right when you got the call 30 minutes ago. It’s a bit unsettling, you know just how sleepy this city can be but you would have thought there would be some activity by now. But aside from fellow officers, not a creature is in sight. ~ELDRITCH +=1
+            5:41, you booked it, albeit begrudgingly, right when you got the call 30 minutes ago. It’s a bit unsettling, you know just how sleepy this city can be but you would have thought there would be some activity by now. But aside from fellow officers, not a creature is in sight. 
             --->investigateScene
 +[Sip your coffee]
 	Damn it’s {cold |really cold|empty... You notice Howard chuckle as he sees you groan at your empty mug |still empty}.
@@ -162,10 +162,10 @@ Dunwich Police Station
 
 Slumping back in your chair{, you take a quick breather. It’s already been a long day, and if your gut is anything to go by, it’s only going to get worse from here.| once again, you collect your thoughts}
 *[Look around your office]
-	Describe office, look out window, its raining now.
+	It's simple, but it's nice to have an office of your own. You're able to keep some photos around and it lets you have some quiet space to think. Turning to gaze out the window, you notice a light drizzle is starting, a typical occurance in Dunwich.
 	->PoliceStation
 *[Miss your wife]
-	You pick up the picture you keep hidden in a drawer, taken of you and your wife on a vacation you took a few years back. 
+	You pick up the picture you keep hidden in a drawer, taken of you and your wife on a vacation you took a few years back. You smile, before putting it back
 	->PoliceStation
 *[Don’t think about how much you wish you could have a smoke]
 You realize that thinking about not thinking about something isn’t really helpful. 
@@ -217,8 +217,10 @@ The man stares deep into your eyes, and says, perfectly calmly, “I saw a man i
 -->Howard
 
 =failWitness
-//WRITE MORE
-sorry, he asked to leave and we had no reason to refuse.
+"S-Sorry Tony, but the witness has left!"
+"Wait, why is that?!"
+"Well, we didn't have any reason to keep him, as he wasn't a suspect and we already got some tesimony from him. So when he asked to leave we kinda had to let him."
+With a sigh, you pinch the bridge of your nose. "God damn it. I'll head back to my office and think on what to do next then."
 ->Office
 =Howard
  As you leave, you bump into Howard. “Oh hey Tony, I’ve been looking for you! I’ve got a lead on the case. Apparently our vic’s nephew is a known delinquent and has been known to ask him for money in the past, I’ve pulled up his address if you’re free to follow up on it.” He smiles, holding out a notecard with an address.
@@ -360,8 +362,6 @@ You head out. Where to next...
 +{loc1 ? officeloc}[Head back to your office]
 ->Office2
 
-or
-
 ===crimeScene2
 Yellow King Delights
 
@@ -386,28 +386,70 @@ Pulling it out, you realize it is a tarot card, The Fool{C1_evidence ? tarotDeck
 ->chooseLoc
 
 ===Office2
-[call in for questioning]
-Chain of events for deduce. Each retort presents every piece of evidence
-Flow of conversation:
+You head back to your office, {C1_evidence ?(tarotDeck, tarotCard):this bloody Fool will be the Ace up your sleeve, so to speak|for a quick breather. Okay, back to investigating. ->chooseLoc}
+Quickly, you fill out the paperwork for Fredrick Doss's arrest. After handing it off to {misc ? knowName: Richy|an officer}, you wait for him to be brought into the interrogation room.
+->interrogation
+
+===interrogation
 Quickly adjusting your collar, you walk into the interrogation room. “Hello again Mr. Doss. I assume you know why we called you in?”
 Fredrick scoffs, “No, I really don’t. Is this about the case you asked me about earlier?”
+
 “Got it in one. You’re being charged with murder, the murder of Francis Thurston. You remember him right? One of your clients?”
+
 “Frankly I couldn’t tell you. If he was, he certainly wasn’t a regular one as the name doesn’t ring a bell. You’d get further asking my secretary, but I really don’t believe I had much interaction with him.”
-“Oh? Then how do you explain…”
-Show ledger
+->c1End1
+===c1End1
+“{Oh? Then how do you explain|Uh, sorry I meant}…”
+*[show Time of Death]
+    "...Please stop wasting my time."
+    ->c1End1
+*[show witness testimony]
+    "This just says he saw a 'man in a suit,' you do know that describes every man at our firm, right?"
+    ->c1End1
+*[show ledger]
 “This ledger shows repeated transactions between the two of you, always during the weekend at the start of the month. Except for last weekend, the weekend right before Mr. Thurston’s murder.”
-“O-oh right, I forgot about those! Uhm, that’s simply my fee for maintaining the trademark and uhm, advertising paperwork. Nothing major I assure you, plus I never actually went there in person.”
-Show tarot card
+“O-oh right, I forgot about those! Uhm, that’s simply my fee for maintaining the trademark and uhm, advertising paperwork. Nothing major I assure you, plus I never actually went there in person.”->c1End2
+===c1End2
+“{Let me show you something real quick|Uh, sorry I actually wanted to show you}…”
+*[show knife]
+    "While that is certainly a grisly knife, it won't have my prints on it officer."
+    "I'm not so sure-"
+    "I am." Fredrick smirks, showing his gloved hands, "I wear them everywhere, bit of a germaphobe."
+    "Noted."
+    ->c1End2
+*[show Tarot Card]
 “If I recall correctly, you’re a fan of Tarot, Freddy?”
 “Fredrick. But yes.”
-“Right right, sorry old habit. Unfortunately I’m still missing one of my cards, so I haven’t been able to do any readings lately.”
+“Right right, sorry old habit." 
+You wave it off as Fredrick grimaces as he reminds you, "Unfortunately I’m still missing one of my cards, so I haven’t been able to do any readings lately.”
 “Well then today is your lucky day!” You smile, holding back the urge to reveal the trick as you slide the Fool card onto the table. “I believe this matches your deck?”
 Fredrick’s eyes light up, “Oh! Yes, where did you find it?”
 And with that, the jaws of your trap snap shut, and you flip it over to reveal the bloodstain on the back. “At the scene of the crime, Freddy. At the scene of the crime.”
 With that, Fredrick’s eyes go wide, as you see the last shred of confidence and bravado leave him. Slumping in his chair, he devolves into babbling nonsense to himself.
+**[Head on out]
 
 Closing the door behind you, Howard walks up. “Well done Tony! Never would have figured that connection to the lawyer myself. But I gotta ask, while we definitely can nail him for the crime, I still don’t understand what motive he had?”
-Ledger + early deduction of poor clothes 
+{-C1_evidence ? ToD3:
+You smile, and pull out your notes on the case.
+"The first clue was..."
+    ***"The shattered glass"
+    ->badEnd1
+    ***"That log showing his payments"
+    ->goodEnd1
+    ***"The fact I don't know"
+    ->badEnd1
+    
+    -else:
+    "To be honest, I'm not quite sure myself."
+    ->badEnd1
+    }
+===badEnd1
+    "So you were just guessing?"
+    "...yeah."
+    Howard sighs, muttering to himself as he walks off, leaving you to finish the paperwork.
+    ->DONE
+    
+===goodEnd1
 “My guess is that despite how things looked, Mr. Thurston wasn’t doing so hot financially. When we checked out the body I noticed his clothes were old and a bit patchwork in places. Probably couldn’t keep making the payments and when Fredrick showed up in person to ask why he hadn’t been paid he decided to make sure he got his due. Only thing I haven’t figured out is why Thurston was paying in the first place.”
 “Eh, don’t worry too much about it. Good work, Tony. I’ll handle the paperwork, as a thank you.”
 You smile, walking off happy at a successful case.
