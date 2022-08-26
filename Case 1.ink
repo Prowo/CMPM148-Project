@@ -217,6 +217,7 @@ The man stares deep into your eyes, and says, perfectly calmly, “I saw a man i
 -->Howard
 
 =failWitness
+//WRITE MORE
 sorry, he asked to leave and we had no reason to refuse.
 ->Office
 =Howard
@@ -231,16 +232,22 @@ sorry, he asked to leave and we had no reason to refuse.
 		-{C1_evidence ? lawyer}->Office
 		-->witnessQ
 
-=Office
-You close the door to your office, flopping into your chair. On your desk, you splay out all the evidence and notes of leads you’ve gotten so far. 
-	List of available clues. If didn’t get list of transactions at scene, goes to the catch
-	You’re missing something. No matter how hard you look you can’t find any clue tying anyone in particular to the scene. Leads into asking Howard for his lead
-Deduce from the transaction record that the payment was made to Fredrick Doss. Look up, find law firm.
-
-->chooseLoc
+===Office
+{You close the door to your office, flopping into your chair. On your desk, you splay out all the evidence and notes of leads you’ve gotten so far.|What else...} 
+	*[Time of Death]
+	    "Time of death was 4 Am. {C1_evidence ? ToD3: It's strange though, since the cafe wasn't to open for almost two hours. ->Office}
+	    ->Office
+	*[Transaction logs]
+	    {C1_evidence ? lawyer:
+	    You scan through the records, most of it is mondain but eventually you notice something. The first weekend of every month there is a payment to a...
+	    "Fredrick Doss of Craftson and Smith? I think that's a law firm a few blocks away. And looking at this, there was supposed to be a payment this weekend. But the logs show no such payment. Better note this down."
+	    ->Office
+	    }
+	 -You’re missing something. No matter how hard you look you can’t find any clue tying anyone in particular to the scene. Guess you should follow up Howard's lead.
+        ->chooseLoc
 
 ===kidsHouse
-you arrive.
+After a long drive to the outskirts of the city, you finally arrive at the address Howard gave you.
 ~loc1-=kidsHouseloc
 ->chooseLoc
 
@@ -286,6 +293,7 @@ or
 [check register] find bloody tarot card
 [check safe] gives payment log clue if not gotten earlier, finds membership card to some club
 [check alley] find knife in dumpster, it has strange carvings, blood 
+->chooseLoc
 
 ===Office2
 [call in for questioning]
