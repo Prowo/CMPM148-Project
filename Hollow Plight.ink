@@ -129,7 +129,7 @@ Howard, attempting to justify calling you out, explained that "since it’s a mu
 	Damn it’s {cold |really cold|empty... You notice Howard chuckle as he sees you groan at your empty mug {~relationship+=10}|still empty}.
 	->investigateScene
 *(store)[The store]
-	The store appears to be a small breakfast café. You can see 5 tables for outside eating, and 5 more plus a bar area inside. The glass is shattered, but the sign showing the hours is still attached to what glass remains. You see a few beat cops examining the inside.
+	{The store appears to be a small breakfast café. You can see 5 tables for outside eating, and 5 more plus a bar area inside. The glass is shattered, but the sign showing the hours is still attached to what glass remains. You see a few beat cops examining the inside.|You walk back outside.}
 	**[Check the glass]
 		You examine the glass, or what’s left of it. You hear the crunch of it under your new shoes, gritting your teeth slightly as you hope you didn’t deal any damage to them. Taking a look at the part still holding firm, you examine the sign.
 
@@ -158,17 +158,17 @@ Howard, attempting to justify calling you out, explained that "since it’s a mu
 				“Oh, right! Name’s Richard, I just started working here last spring.”
 				~misc += knowName
 				->Richy
-			{C1_evidence ? ledger:
-			++++”Thank you for your time.”
+			
+			++++{C1_evidence ? ledger}”Thank you for your time.”
 					->store
-					}
+					
 	    ++[Back]->investigateScene
 	*[Your shoes]
 		Staring at your feet, you admire your new black Luther shoes. It’s a new brand, and boy are you glad you gave it a shot. With all the walking you have to do it’s important to have good heel support…
 		->investigateScene
 
-	{C1_evidence ? (ledger, ToD1):
-	+(wrap)[Wrap up]
+	
+	+(wrap){C1_evidence ? (ledger, ToD1)}[Wrap up]
 		Howard turns to you, a somber smile flashing your way. “Looks like you’re all done? Gotta say I’ve missed seeing you in action.”
 		++"Not yet."
 		    "Well, take your time."
@@ -178,8 +178,8 @@ Howard, attempting to justify calling you out, explained that "since it’s a mu
                     "Good luck."
                     +++ [Head to the Station]
                     ->PoliceStation
-		{C1_evidence ? (ToD1, ToD2):
-		** ”I do have a question first[."],”
+		
+		** {C1_evidence ? (ToD1, ToD2)}”I do have a question first[."],”
 		You said he died at 4 AM?”
 				“I mean, that’s what Doc told me, and they’re usually right on the money with their TOD’s. Why?”
 				+++[Back off]
@@ -198,8 +198,8 @@ Howard, attempting to justify calling you out, explained that "since it’s a mu
                     "Good luck."
                     ***** [Head to the Station]
                     ->PoliceStation
-                    }
-                    }
+                    
+                    
 	-->investigateScene
 
 ===PoliceStation
@@ -219,8 +219,8 @@ You realize that thinking about not thinking about something isn’t really help
 +(Review)[Review the case]
 	"Lets see what{| else} we've got."
 	~misc+=reviewedCase
-	{C1_evidence ? (ToD1, ToD2):
-	*Doc said he died at 4 AM?
+	
+	*{C1_evidence ? (ToD1, ToD2)}Doc said he died at 4 AM?
 				They’re usually right on the money with their TOD’s, but this one feels wrong... What evidence explains this feeling?”
 				***{C1_evidence ? moneyIssues}[The victim's money issues]
 				    ...Hmm nope. Oh well, I'll think on it some more later.
@@ -232,7 +232,7 @@ You realize that thinking about not thinking about something isn’t really help
 				***{C1_evidence ? ledger}[The financial records]
 				...Hmm nope. Oh well, I'll think on it some more later.
 				->Review
-	}
+	
 	++[That's enough for now]
 	->PoliceStation
 +{misc ? reviewedCase}[Talk to Howard]
