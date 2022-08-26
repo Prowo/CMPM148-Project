@@ -34,13 +34,13 @@ Howard, attempting to justify calling you out, explained that "since it’s a mu
 			The man is wearing a simple white undershirt with vertical light gray stripes under a nice green overcoat, although upon looking closely you can see spots where it has been sewn up to fix holes. The yellow scarf around his neck is stained with blood in places, a shame as it appears to be handmade. The man is wearing simple blue jeans, well worn at the knees, and warm winter shoes, stuffed with cotton for extra warmth.
 			***[DEDUCE]
 				This feels noteworthy. Looking at these clothes I feel like the victim was 
-				****extremely well off
+				****[extremely well off]
 				"Hmm maybe. Anyways enough musing, gotta get back to work." ->body
 				//->body
-				****struggling financially
+				****[struggling financially]
 				    ~C1_evidence+=moneyIssues
 				    Yeah, that makes sense. But why would this guy have money issues if the cafe is doing so well? ->body
-				****in a secret relationship
+				****[in a secret relationship]
 				"Hmm maybe. Anyways enough musing, gotta get back to work." ->body
 				
 			//-->body
@@ -316,7 +316,7 @@ You arrive at the law offices of Craftson and Smith. Walking inside, you see a s
 	//Reveals she got yesterday off
 
 
-After waiting for some time, you see a tall, lanky man in a deep purple suit walk in. He flashes the secretary a grin as she gestures to you.
+After waiting for some time, you see a tall, lanky man in a deep purple suit and pristine white gloves walk in. He flashes the secretary a grin as she gestures to you.
 "You have a visitor Mr. Doss. Mr. uh, I'm sorry, I didn't catch your name?"
 
 You stand up, brushing yourself off. "Tony. Officer Tony, Dunwich PD. I have a few questions for you Mr. Doss."
