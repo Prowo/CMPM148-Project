@@ -3,4 +3,4 @@ An interactive narrative game project for the UCSC Computational Media 148 Class
 
 Should be working.
 
-Case 1 Should be working, might need to undo choices to prevent breaks.
+Case 1 might need to undo choices to prevent breaks.
