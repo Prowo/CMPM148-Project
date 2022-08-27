@@ -14,7 +14,7 @@ VAR relationship = 30
 
 LIST C1_evidence = moneyIssues, ToD1, ToD2, ledger, lawyer, ToD3, kid, tarotDeck, tarotCard, alley, cult_knife
 
-LIST loc1 = (crimeSceneloc), officeloc, kidsHouseloc, lawfirmLoc
+LIST loc1 = (crimeSceneloc), (officeloc), kidsHouseloc, lawfirmLoc
 
 LIST misc = knowName, reviewedCase
 
@@ -288,11 +288,12 @@ The man’s eyes shoot towards you, boring a hole into your being. “I have no 
 	***{eyes == true}[Buy in, this man isn’t insane]
 		You take a deep breath, leaning in close. “I believe you. You’re not insane are you? Please help me, tell me exactly what you saw.”
 The man stares deep into your eyes, and says, perfectly calmly, “I saw a man in a suit, i think it was a lawyer, go in around 2:30. They… they had an argument. Then suddenly the stranger pulled out this weird knife and stabbed him! And and, there was this strange light! And oh god, fuck, the eyes. THE EYES! EVERYWHERE, ALL OH GOD PLEASE NO!”
+~loc1+=lawfirmLoc
 
 	***[Stay cool, stick to the facts]
 	//[You don’t have time for this crazy shit, be aggressive!]
 		Calmly you ask, “Tell me what you saw.” The man collects himself slightly, “You wouldn’t believe me but… I saw a man in a suit, I think it was a lawyer, go in around 2:30. They… they had an argument. Then suddenly the stranger pulled out this weird knife and stabbed him! And and, there was this strange light! And oh god, fuck, the eyes. THE EYES! EVERYWHERE, ALL OH GOD PLEASE NO!”
-	---~loc1+=lawfirmLoc	
+	~loc1+=lawfirmLoc	
 -->Howard
 
 =failWitness
