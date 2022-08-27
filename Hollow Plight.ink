@@ -16,7 +16,8 @@ LIST C1_evidence = moneyIssues, ToD1, ToD2, ledger, lawyer, ToD3, kid, tarotDeck
 
 LIST loc1 = (crimeSceneloc), officeloc, kidsHouseloc, lawfirmLoc
 
-LIST misc = knowName, reviewedCase 
+LIST misc = knowName, reviewedCase
+
 
 
 //  Case 2 Variables
@@ -44,6 +45,10 @@ VAR kniferelictarot = 0
     ~ return x ? y
 
 //Start_Screen
+
+===function increaseRelationship(x)
+~relationship+=x
+~return
 ===start_screen
 
 <center><h1> Hollow Plight <h1>
@@ -91,7 +96,7 @@ Howard, attempting to justify calling you out, explained that "since it’s a mu
 ===investigateScene
 	You take a look at the scene, the sleepy dark gray cityscape smirched with the blood oozing down into the gutter. {Where to start…|What next…}
 	*(body)[The body]
-		{You crouch down taking a look at the corpse. Looks to be a male, middle aged, slumped over on the sidewalk from an injury to their chest. Bloodstains coat the sidewalk and down into the gutter. It’s a lot of blood.|} 
+		{You crouch down taking a look at the corpse. Male, middle aged, slumped over on the sidewalk from an injury to their chest. Bloodstains coat the sidewalk and down into the gutter. It’s a lot of blood.|} 
 		**[Examine the clothes]
 			The man is wearing a simple white undershirt with vertical light gray stripes under a nice green overcoat, although upon looking closely you can see spots where it has been sewn up to fix holes. The yellow scarf around his neck is stained with blood in places, a shame as it appears to be handmade. The man is wearing simple blue jeans, well worn at the knees, and warm winter shoes, stuffed with cotton for extra warmth.
 			***[DEDUCE]
@@ -145,8 +150,8 @@ Howard, attempting to justify calling you out, explained that "since it’s a mu
             It's 5 : 41, you booked it, albeit begrudgingly, right when you got the call 30 minutes ago. It’s a bit unsettling, you know just how sleepy this city can be but you would have thought there would be some activity by now. But aside from fellow officers, not a creature is in sight. 
             +++[Back]->investigateScene
 +[Sip your coffee]
-	Damn it’s {cold |really cold|empty... You notice Howard chuckle as he sees you groan at your empty mug {~relationship+=10}|still empty}.
-	->investigateScene
+	Damn it’s {cold |really cold|empty... You notice Howard chuckle as he sees you groan at your empty mug{increaseRelationship(10)}|still empty}.
+    ->investigateScene
 *(store)[The store]
 	{The store appears to be a small breakfast café. You can see 5 tables for outside eating, and 5 more plus a bar area inside. The glass is shattered, but the sign showing the hours is still attached to what glass remains. You see a few beat cops examining the inside.|You walk back outside.}
 	**[Check the glass]
