@@ -53,28 +53,36 @@ VAR kniferelictarot = 0
 
 <center><h1> Hollow Plight <h1>
     *[START]
--<center><h2> Case 1 <h2>
+-<center><h4> Menu <h4>
 
     +[Begin Case 1]
     ->crimeScene1
    
     +[Case 2]
-     <center>Note: Cases must be played in order to obtain the true ending. 
-     ++[Skip to Case 2]
-        ->location_description
-    ++[Begin Case 1]
-    ->crimeScene1
+        <center>Note: Cases must be played in order to obtain the true ending. 
+        ++[Skip to Case 2]
+            ->case2start
+        ++[Begin Case 1]
+            ->crimeScene1
     +[Case 3]
-    <center>Note: Cases must be played in order to obtain the true ending. 
-     ++[Skip to Case 3]
-        ->->bank_description
-    ++[Begin Case 1]
-    ->crimeScene1
+        <center>Note: Cases must be played in order to obtain the true ending. 
+        ++[Skip to Case 3]
+            ->case3_start
+        ++[Begin Case 1]
+        ->crimeScene1
+    +[Ending]
+        <center>Note: Cases must be played in order to obtain the true ending. 
+        ++[Skip to Ending]
+            ->ending_start
+        ++[Begin Case 1]
+        ->crimeScene1
     
     
 
 
 ===crimeScene1===
+-<center><h2> Case 1 <h2>
+
 The wind howls between the tall skyscrapers, crows cawing in the early fog filled hours. Shivering, you tighten your grip on your coat.
 *   “Why did you call me this early?”
         You mutter, glaring at the man beside you as you struggle to contain another yawn.
@@ -310,9 +318,11 @@ With a sigh, you pinch the bridge of your nose. "God damn it. I'll head back to 
 		~loc1+=kidsHouseloc
 	*{C1_evidence ? lawyer}”Actually, it looks like our perp is some lawyer, or at least an adult.”
 		“Oh?” Howard raises an eyebrow, “What do you mean?”
-		“I talked to the witness, and they said they saw a man in a suit stab our vic. Gonna be following that up.” With a quick pat on the shoulder, you thank Howard anyways and head back to your office. {~Relationship-=5}
-		-{C1_evidence ? lawyer}->Office
-		-->witnessQ
+		“I talked to the witness, and they said they saw a man in a suit stab our vic. Gonna be following that up.” With a quick pat on the shoulder, you thank Howard anyways and head back to your office. 
+		~relationship-=5
+		//-{C1_evidence ? lawyer}
+		->Office
+	-->witnessQ
 
 ===Office
 {You close the door to your office, flopping into your chair. On your desk, you splay out all the evidence and notes of leads you’ve gotten so far.|What else...} 
@@ -431,6 +441,7 @@ As you flash your badge, you just barely notice Fredrick's grin slowly melt away
 "Appreciated officer. Have a nice day."
 ~loc1-=lawfirmLoc
 ->chooseLoc
+
 ===chooseLoc
 You head out. Where to next...
 +{loc1 ? kidsHouseloc}[Follow up on Howard's lead]
@@ -451,20 +462,23 @@ You drive back over to the scene of the crime. It's been taped off, but there is
 Collecting your thoughts, you think about anything you might have missed.
 Let's get to work.
 ->inv2
+
 ===inv2
 *[check register]
-You head inside and double check the register. You just barely make out a slip of paper wedged underneath the drawer.
-"Hm? What is this?"
-Pulling it out, you realize it is a tarot card, The Fool{C1_evidence ? tarotDeck: and the marks on the back are identical to the deck Fredrick had}. While the back is normal, the front of the card has a bloodstain on it.
-~C1_evidence += tarotCard
-->inv2
-//[check safe] gives payment log clue if not gotten earlier, finds membership card to some club
-*{C1_evidence ? alley}[check alley]
-    Taking a peak down the alley Johnny mentioned, you can see the graffiti he mentioned. Honestly, it's pretty good. However your attention is drawn towards something glittering in the trash. As you pull it out, you find in your hand a strange knife, coated in carvings and covered in blood.
-    ~C1_evidence += cult_knife
-    ~cult_clues += knife
+    You head inside and double check the register. You just barely make out a slip of paper wedged underneath the drawer.
+    "Hm? What is this?"
+    Pulling it out, you realize it is a tarot card, The Fool{C1_evidence ? tarotDeck: and the marks on the back are identical to the deck Fredrick had}. While the back is normal, the front of the card has a bloodstain on it.
+    ~C1_evidence += tarotCard
     ->inv2
--That seems to be it, time to head on out.
+
+//[check safe] gives payment log clue if not gotten earlier, finds membership card to some club
+    *{C1_evidence ? alley}[check alley]
+        Taking a peak down the alley Johnny mentioned, you can see the graffiti he mentioned. Honestly, it's pretty good. However your attention is drawn towards something glittering in the trash. As you pull it out, you find in your hand a strange knife, coated in carvings and covered in blood.
+        ~C1_evidence += cult_knife
+        ~cult_clues += knife
+    ->inv2
+    
+*That seems to be it, time to head on out.
 ->chooseLoc
 
 ===Office2
@@ -555,7 +569,8 @@ You smile, walking off happy at a successful case.
                     }
                       <> Ends <h2>
     +[Continue]
-    
+        ->case2start  
+===case2start   
 <center><h2> Case 2: Begins <h2>
     ->scene1
     ->DONE
@@ -737,7 +752,9 @@ You smile, walking off happy at a successful case.
 
 <center><h2> Case 2: Facade Ends <h2>
     +[Continue]
-    
+        ->case3_start
+
+===case3_start        
 <center><h2> Case 3 Begins <h2>
     ->dream_sequence
     ->DONE
@@ -1881,9 +1898,11 @@ He starts to whisper again. You lean in order to hear him.
 
 <center><h2> Case 3: From the Ashes Ends <h2>
     +[Continue]
-    
+        ->ending_start
+        
+=== ending_start
 <center><h2> Ending Begins <h2>
-    ->dream_sequence
+    ->case3_deduce
     ->DONE
  
 
@@ -1913,7 +1932,7 @@ He starts to whisper again. You lean in order to hear him.
         
 =case2
     *[Doubt]
-    { ~ It could of been a tragic suicide. | Theres no hard evidence she joined a cult. | Her suicide plan was set in stone and she exhausted her money for who knows what. | These youngins just commit suicide without reach thirty. It's so fucking sad. | It's not a new case where a no name commits suicide.}
+    { ~It could of been a tragic suicide. | Theres no hard evidence she joined a cult. | Her suicide plan was set in stone and she exhausted her money for who knows what. | These youngins just commit suicide without reach thirty. It's so fucking sad. | It's not a new case where a no name commits suicide.}
         **[Yes]
         
         ->end
@@ -1934,11 +1953,11 @@ He starts to whisper again. You lean in order to hear him.
         ->case2
 
 =end
-{ ending ? good}
+*{ending ? good}[Find Howard]
 <>  "I always wondered, Howard. What type of person you are? I am going to settle this by my own hands."
     ->begining_of_good_ending
 
-{ending !? good}
+*{ending !? good}[Wait for Howard]
 <> "Howard, you better have a good dam reason. We been partners through thick and thin. Thats trust I won't fucking betray."
     ->dont_believe
 
