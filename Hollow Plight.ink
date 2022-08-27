@@ -308,6 +308,7 @@ With a sigh, you pinch the bridge of your nose. "God damn it. I'll head back to 
 		You give Howard a nod, taking the card as you head back to your office.
 		~C1_evidence+=kid
 		~loc1+=kidsHouseloc
+		->Office
 	*{C1_evidence ? lawyer}”Actually, it looks like our perp is some lawyer, or at least an adult.”
 		“Oh?” Howard raises an eyebrow, “What do you mean?”
 		“I talked to the witness, and they said they saw a man in a suit stab our vic. Gonna be following that up.” With a quick pat on the shoulder, you thank Howard anyways and head back to your office. {~Relationship-=5}
@@ -451,20 +452,26 @@ You drive back over to the scene of the crime. It's been taped off, but there is
 Collecting your thoughts, you think about anything you might have missed.
 Let's get to work.
 ->inv2
+
 ===inv2
-*[check register]
-You head inside and double check the register. You just barely make out a slip of paper wedged underneath the drawer.
-"Hm? What is this?"
-Pulling it out, you realize it is a tarot card, The Fool{C1_evidence ? tarotDeck: and the marks on the back are identical to the deck Fredrick had}. While the back is normal, the front of the card has a bloodstain on it.
-~C1_evidence += tarotCard
-->inv2
-//[check safe] gives payment log clue if not gotten earlier, finds membership card to some club
-*{C1_evidence ? alley}[check alley]
-    Taking a peak down the alley Johnny mentioned, you can see the graffiti he mentioned. Honestly, it's pretty good. However your attention is drawn towards something glittering in the trash. As you pull it out, you find in your hand a strange knife, coated in carvings and covered in blood.
-    ~C1_evidence += cult_knife
-    ~cult_clues += knife
-    ->inv2
--That seems to be it, time to head on out.
+    
+    *[check register]
+        ~C1_evidence += tarotCard
+        You head inside and double check the register. You just barely make out a slip of paper wedged underneath the drawer.
+        "Hm? What is this?"
+        Pulling it out, you realize it is a tarot card, The Fool{C1_evidence ? tarotDeck: and the marks on the back are identical to the deck Fredrick had}. While the back is normal, the front of the card has a bloodstain on it.
+        ->inv2
+
+    *{C1_evidence ? alley}[check alley]
+        ~C1_evidence += cult_knife
+        ~cult_clues += knife
+        Taking a peak down the alley Johnny mentioned, you can see the graffiti he mentioned. Honestly, it's pretty good. However your attention is drawn towards something glittering in the trash. As you pull it out, you find in your hand a strange knife, coated in carvings and covered in blood.
+        ->inv2
+    
+     *That seems to be it, time to head on out.
+        ~loc1 -= crimeSceneloc
+        ->chooseLoc
+
 ->chooseLoc
 
 ===Office2
@@ -516,7 +523,7 @@ With that, Fredrick’s eyes go wide, as you see the last shred of confidence an
 **[Head on out]
 
 Closing the door behind you, Howard walks up. “Well done Tony! Never would have figured that connection to the lawyer myself. But I gotta ask, while we definitely can nail him for the crime, I still don’t understand what motive he had?”
-{-C1_evidence ? ToD3:
+{- has(C1_evidence, ToD3):
 You smile, and pull out your notes on the case.
 "The first clue was..."
     ***"The shattered glass"
